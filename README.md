@@ -42,7 +42,7 @@ The skill auto-detects available tools. Set environment variables for the backen
 ```powershell
 # Option A: pockgo relay (default)
 $env:BACKEND_API_KEY = "sk-your-key"
-$env:BACKEND_BASE_URL = "https://newapi.pockgo.com/v1"
+$env:BACKEND_BASE_URL = "https://api.openai.com/v1"
 
 # Option B: Direct OpenAI
 $env:BACKEND_API_KEY = "sk-your-openai-key"
