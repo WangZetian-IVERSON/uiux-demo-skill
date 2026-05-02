@@ -122,7 +122,7 @@ All configuration lives in `scripts/config.py`. Set environment variables:
 ```powershell
 # 默认: pockgo relay (OpenAI 兼容)
 $env:BACKEND_API_KEY  = "sk-your-key"
-$env:BACKEND_BASE_URL = "https://newapi.pockgo.com/v1"
+$env:BACKEND_BASE_URL = "https://api.openai.com/v1"
 
 # 直连 OpenAI
 $env:BACKEND_API_KEY  = "sk-your-openai-key"
@@ -201,12 +201,12 @@ uiux-portfolio-deck/
 
 | 变量 Variable | 默认值 Default | 说明 What |
 |---------------|---------------|-----------|
-| `BACKEND_API_KEY` | (fallback to `POCKGO_KEY`) | API 密钥 |
-| `BACKEND_BASE_URL` | `https://newapi.pockgo.com/v1` | 后端地址 |
+| `BACKEND_API_KEY` | (fallback to `OPENAI_KEY`) | API 密钥 |
+| `BACKEND_BASE_URL` | `https://api.openai.com/v1` | 后端地址 |
 | `BACKEND_IMAGE_MODEL` | `gpt-image-2` | 默认生图模型 |
 | `BACKEND_QA_MODEL` | `gpt-4o` | QA 视觉模型 |
 | `COMFY_API_KEY` | — | ComfyUI 平台密钥 |
-| `COMFYUI_URL` | `http://127.0.0.1:8188` | ComfyUI 服务器地址 |
+| `COMFYUI_URL` | `http://127.0.0.1:XXXX` | ComfyUI 服务器地址 |
 
 ---
 
