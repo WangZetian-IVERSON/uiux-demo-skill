@@ -1,4 +1,4 @@
-# UI/UX Portfolio Deck — AI Skill
+# UI/UX quickPortfolio-demo  — AI Skill
 
 A portable skill for building UI/UX portfolio decks and product design case-study presentations. One prompt → complete image-rich deck with automated quality review.
 
