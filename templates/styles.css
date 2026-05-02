@@ -1,0 +1,175 @@
+/* Image-first deck — shared text-layer typography + per-role positioning.
+   The background image (Layer 1) carries all visual weight.
+   This stylesheet only positions and styles editable text + clickable links. */
+
+:root {
+  --canvas-w: 2048px;
+  --canvas-h: 1152px;
+  --display: "Source Han Sans SC Heavy", "思源黑体 Heavy", "Misans Heavy",
+             "OPPOSans Heavy", "HarmonyOS Sans SC", "PingFang SC", sans-serif;
+  --body:    "HarmonyOS Sans SC", "Misans", "PingFang SC",
+             "Microsoft YaHei UI", sans-serif;
+  --ink-on-dark:  #f6fbff;
+  --ink-on-light: #15212a;
+  --muted-on-dark: rgba(246, 251, 255, 0.72);
+}
+
+html, body { margin: 0; padding: 0; background: #000; color: var(--ink-on-dark); }
+
+deck-stage section {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: var(--body);
+  color: var(--ink-on-dark);
+}
+
+deck-stage section .bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  user-select: none;
+  pointer-events: none;
+}
+
+deck-stage section .text-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none; /* clicks pass through except on <a> */
+}
+
+deck-stage section .text-layer h1,
+deck-stage section .text-layer h2 {
+  font-family: var(--display);
+  font-weight: 900;
+  letter-spacing: 0.01em;
+  margin: 0;
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.45);
+}
+
+deck-stage section .text-layer p { margin: 0; }
+
+deck-stage section .text-layer a {
+  pointer-events: auto;
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+  transition: opacity 0.2s;
+}
+deck-stage section .text-layer a:hover { opacity: 0.7; }
+
+/* ---------- per-role positioning ---------- */
+/* Coordinates are % of 2048x1152 canvas, matching reserved zones in image prompts. */
+
+/* Cover */
+.text-layer--cover h1 {
+  position: absolute;
+  left: 3.9%; top: 8.6%; width: 50%;
+  font-size: 88px; line-height: 1.05;
+}
+.text-layer--cover .meta {
+  position: absolute;
+  left: 3.9%; bottom: 9%;
+  font-size: 18px;
+  color: var(--muted-on-dark);
+}
+.text-layer--cover a.link {
+  position: absolute;
+  left: 3.9%; bottom: 4%;
+  font-size: 18px;
+}
+
+/* Contents */
+.text-layer--contents h2 {
+  position: absolute;
+  left: 3.9%; top: 8%; font-size: 56px;
+}
+.text-layer--contents .toc {
+  position: absolute;
+  left: 3.9%; top: 22%; width: 50%;
+  list-style: none; padding: 0; margin: 0;
+  font-size: 32px; line-height: 1.8;
+  font-family: var(--display);
+}
+.text-layer--contents .toc a { display: inline-block; padding: 4px 0; }
+
+/* Profile */
+.text-layer--profile h2 {
+  position: absolute;
+  left: 3.9%; top: 8%; font-size: 56px;
+}
+.text-layer--profile .lead {
+  position: absolute;
+  left: 3.9%; top: 22%; width: 42%;
+  font-size: 28px; line-height: 1.5;
+}
+.text-layer--profile .tags {
+  position: absolute;
+  left: 3.9%; top: 60%;
+  list-style: none; padding: 0; margin: 0;
+  display: flex; gap: 14px; flex-wrap: wrap;
+}
+.text-layer--profile .tags li {
+  padding: 8px 16px;
+  border: 1px solid rgba(246, 251, 255, 0.4);
+  border-radius: 999px;
+  font-size: 18px;
+}
+
+/* Section cover */
+.text-layer--section .num {
+  position: absolute;
+  left: 3.9%; top: 30%;
+  font-family: var(--display);
+  font-size: 32px; letter-spacing: 0.2em;
+  color: var(--muted-on-dark);
+}
+.text-layer--section h2 {
+  position: absolute;
+  left: 3.9%; top: 38%; width: 50%;
+  font-size: 96px; line-height: 1.05;
+}
+.text-layer--section .role {
+  position: absolute;
+  left: 3.9%; top: 70%;
+  font-size: 22px;
+  color: var(--muted-on-dark);
+}
+
+/* Caption strip (for in-image core UI screens) */
+.text-layer--caption .caption {
+  position: absolute;
+  left: 3.9%; right: 3.9%; bottom: 4%;
+  font-size: 22px;
+  font-family: var(--display);
+  color: var(--ink-on-dark);
+  text-align: left;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.6);
+}
+
+/* Thanks */
+.text-layer--thanks h1 {
+  position: absolute;
+  left: 25%; top: 30%; width: 50%;
+  font-size: 160px; text-align: center; line-height: 1;
+}
+.text-layer--thanks a.link {
+  position: absolute;
+  left: 25%; right: 25%; top: 70%;
+  font-size: 28px;
+  text-align: center;
+  display: block;
+  border-bottom: none;
+}
+
+/* Light pages (override when a page background is paper-light) */
+.text-layer--light { color: var(--ink-on-light); }
+.text-layer--light h1, .text-layer--light h2 {
+  text-shadow: none;
+  color: var(--ink-on-light);
+}

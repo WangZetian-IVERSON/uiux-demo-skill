@@ -1,0 +1,29 @@
+<!--
+  Reusable Concept Badge component
+  Drop-in for any non-real-UI page in VISUAL_PROPOSAL mode.
+  Per references/asset-gate.md (Page-Level Concept Badge mandate).
+
+  USAGE — Option A (inline HTML, recommended):
+    <div class="concept-badge">[ 概念 / CONCEPT ]</div>
+    Required CSS (paste into the page <style>):
+      .concept-badge{
+        position:absolute; top:32px; right:96px;
+        border:1px solid var(--accent, #34d6ff); color:var(--accent, #34d6ff);
+        font-family:'JetBrains Mono', monospace; font-size:11px; letter-spacing:0.08em;
+        padding:5px 10px; border-radius:3px;
+        background: rgba(255,255,255,0.02);
+        z-index:99;
+      }
+
+  USAGE — Option B (variants):
+    <div class="concept-badge">[ 概念 · 设计提案 / DESIGN PROPOSAL ]</div>
+    <div class="concept-badge">[ 概念数据 / CONCEPT DATA ]</div>
+    <div class="concept-badge">[ 概念研究 / CONCEPT RESEARCH ]</div>
+
+  RULES:
+    - MUST appear in top-right of every non-real-UI page in VISUAL_PROPOSAL mode.
+    - Color = page accent color (inherits from PADB.primary_accent).
+    - Never omit. Never put it in real-UI screenshot pages (those are real, not concept).
+    - Sits at z-index above page content but below modals.
+-->
+<div class="concept-badge">[ 概念 / CONCEPT ]</div>

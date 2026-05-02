@@ -1,0 +1,50 @@
+# Secrets — API keys, tokens, MCP config with credentials
+.vscode/mcp.json
+.env
+*.key
+!vendor/
+
+# Generated images & QA artifacts (large, user-specific)
+generated-images/
+test-output/assets/
+_health_check.png
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+*.egg-info/
+
+# Node
+node_modules/
+dist/
+.npm/
+
+# Build artifacts (layout iterations, QA reports, rendered screenshots)
+*.seed.bak
+*.iter*.json
+*.iter*.html
+*.iter*.png
+*.qa.json
+*.manual-qa.json
+*rendered*.png
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/settings.json
+
+# Personal / work-in-progress files (not part of the skill)
+_shot.py
+agents/
+汪泽田_*
+UIUX作品集*
+prompts/demo-*

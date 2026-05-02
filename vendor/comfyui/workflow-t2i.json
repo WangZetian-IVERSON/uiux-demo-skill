@@ -1,0 +1,30 @@
+{
+  "268": {
+    "inputs": {
+      "prompt": "",
+      "seed": 1625533052,
+      "quality": "medium",
+      "background": "auto",
+      "size": "2048x1152",
+      "n": 1,
+      "model": "gpt-image-2"
+    },
+    "class_type": "OpenAIGPTImage1",
+    "_meta": {
+      "title": "OpenAI GPT Image 1"
+    }
+  },
+  "269": {
+    "inputs": {
+      "filename_prefix": "gpt-image-2",
+      "images": [
+        "268",
+        0
+      ]
+    },
+    "class_type": "SaveImage",
+    "_meta": {
+      "title": "保存图像"
+    }
+  }
+}
