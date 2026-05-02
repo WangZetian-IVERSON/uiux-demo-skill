@@ -144,12 +144,12 @@ See `scripts/config.py` for all options. Quick reference:
 
 | Variable | Default | What |
 |----------|---------|------|
-| `BACKEND_API_KEY` | (falls back to `POCKGO_KEY`) | API key |
-| `BACKEND_BASE_URL` | `https://newapi.pockgo.com/v1` | Relay/provider URL |
+| `BACKEND_API_KEY` | (falls back to `OPENAI_KEY`) | API key |
+| `BACKEND_BASE_URL` | `https://api.openai.com/v1` | Relay/provider URL |
 | `BACKEND_IMAGE_MODEL` | `gpt-image-2` | Default image model |
 | `BACKEND_QA_MODEL` | `gpt-4o` | Vision QA model |
 | `COMFY_API_KEY` | — | ComfyUI key (separate) |
-| `COMFYUI_URL` | `http://127.0.0.1:8188` | ComfyUI server |
+| `COMFYUI_URL` | `http://127.0.0.1:XXXX` | ComfyUI server |
 
 ## License
 
