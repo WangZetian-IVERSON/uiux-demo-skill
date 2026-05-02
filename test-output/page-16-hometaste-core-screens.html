@@ -1,0 +1,140 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><title>16 · Hometaste Core Screens</title>
+<link rel="stylesheet" href="_deck.css">
+<style>
+  .header{ display:flex; justify-content:space-between; align-items:flex-end; margin-top:24px; gap:48px;}
+  .header .h{ font-family:var(--font-zh-display); font-weight:900; font-size:48px; line-height:1.1; color:var(--text);}
+  .header .h em{ color:var(--accent); font-style:normal;}
+  .header .meta{ font-family:var(--font-mono); font-size:11px; color:#9a8c7d; letter-spacing:0.1em; text-align:right; line-height:1.7; min-width:280px;}
+  .grid{ margin-top:40px; display:grid; grid-template-columns: 1fr 1fr; gap:40px; height:780px;}
+  .side{ background:var(--surface); border:1px solid var(--hair); border-radius:18px; padding:28px 32px; display:flex; flex-direction:column; gap:18px;}
+  .side h3{ font-family:var(--font-zh-display); font-size:28px; font-weight:800; color:var(--text);}
+  .side h3 small{ font-family:var(--font-mono); font-size:11px; color:#9a8c7d; letter-spacing:0.1em; display:block; margin-bottom:4px; font-weight:400;}
+  .side .pair{ display:grid; grid-template-columns: 1fr 1fr; gap:24px; flex:1;}
+  .phone{
+    background:#0a0a0a; border-radius:36px; padding:8px;
+    box-shadow:0 24px 48px rgba(0,0,0,0.18);
+    aspect-ratio:9/19.5;
+    position:relative;
+  }
+  .phone .notch{ position:absolute; top:14px; left:50%; transform:translateX(-50%); width:80px; height:20px; background:#000; border-radius:12px; z-index:5;}
+  .phone .image-slot{
+    width:100%; height:100%; border-radius:28px; padding:18px 12px;
+    border-color:var(--accent);
+  }
+  .phone .image-slot .slot-tag{ font-size:8px; padding:2px 6px;}
+  .phone .image-slot .slot-name{ font-size:11px; margin-bottom:4px;}
+  .phone .image-slot .slot-detail{ font-size:9px; line-height:1.5; color:#7a6d60;}
+  .cap{ font-size:12px; color:#5a4d40; line-height:1.55; padding-top:14px; border-top:1px solid var(--hair); margin-top:8px;}
+  .cap b{ color:var(--text);}
+  .side.user{ border-color:rgba(193,75,42,0.20);}
+  .side.leader{ border-color:rgba(107,142,90,0.25);}
+  .side.user h3{ color:#c14b2a;}
+  .side.leader h3{ color:#5a7849;}
+  .top-meta{ color:#9a8c7d;} .top-meta .right{ color:#7a6d60;}
+  .bottom-bar{ color:#9a8c7d;}
+  .concept-badge{ background:rgba(193,75,42,0.06);}
+</style></head>
+<body class="padb-hometaste">
+<div class="page haze-paper">
+  <div class="concept-badge">[ 概念 · 设计提案 / DESIGN PROPOSAL ]</div>
+  <div class="top-meta"><span>16 / 22 · HOMETASTE · CORE SCREENS</span><span class="right">汪泽田 · 2026 PORTFOLIO</span></div>
+
+  <div class="header">
+    <div class="h">同一套组件，<em>两种密度</em>，4 个核心界面</div>
+    <div class="meta">
+      CORE SCREENS · 4 SCREENS<br/>
+      USER ×2 · LEADER ×2 · CONCEPT
+    </div>
+  </div>
+
+  <div class="grid">
+
+    <div class="side user">
+      <h3><small>USER · 买菜的妈妈端</small>低密度 · 大图 · 信任感</small></h3>
+      <div class="pair">
+        <div>
+          <div class="phone">
+            <div class="notch"></div>
+            <div class="image-slot">
+              <div class="slot-tag">[ IMAGE_MODEL · U1 ]</div>
+              <div class="slot-name">用户首页</div>
+              <div class="slot-detail">
+                明日开团 · 大图 SKU 卡<br/>
+                "本地番茄 · 当日采"<br/>
+                "现磨豆腐 · 早 5 点"<br/>
+                信任标 · 团长头像<br/>
+                自取点 · 张哥的店
+              </div>
+            </div>
+          </div>
+          <div class="cap"><b>U1 · 首页：</b>一屏 1-2 个 SKU，大图 + 当日采摘日期，重信任不重数量。</div>
+        </div>
+        <div>
+          <div class="phone">
+            <div class="notch"></div>
+            <div class="image-slot">
+              <div class="slot-tag">[ IMAGE_MODEL · U2 ]</div>
+              <div class="slot-name">下单确认</div>
+              <div class="slot-detail">
+                明日 17:30 后到张哥的店<br/>
+                自取码 · 大字<br/>
+                "可以让团长帮我留 1 小时"<br/>
+                合计 ¥ 28<br/>
+                确认下单
+              </div>
+            </div>
+          </div>
+          <div class="cap"><b>U2 · 下单：</b>给到时间 + 自取点 + "代留"3 个核心信息，CTA 大字粗体。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="side leader">
+      <h3><small>LEADER · 团长端</small>高密度 · 数字 · 速度</small></h3>
+      <div class="pair">
+        <div>
+          <div class="phone">
+            <div class="notch"></div>
+            <div class="image-slot">
+              <div class="slot-tag">[ IMAGE_MODEL · L1 ]</div>
+              <div class="slot-name">日清单 · 列表</div>
+              <div class="slot-detail">
+                今日 35 单 · 已交 12 / 23<br/>
+                顺序：自取码 · 名 · 件<br/>
+                A028 李 ·5 件 ·已付<br/>
+                A029 王 ·2 件 ·已付<br/>
+                左划批量 · 右划核对
+              </div>
+            </div>
+          </div>
+          <div class="cap"><b>L1 · 日清单：</b>一屏 12 单可见，左划批量 / 右划逐单核对，操作密度对齐键盘式速选。</div>
+        </div>
+        <div>
+          <div class="phone">
+            <div class="notch"></div>
+            <div class="image-slot">
+              <div class="slot-tag">[ IMAGE_MODEL · L2 ]</div>
+              <div class="slot-name">错单一键回退</div>
+              <div class="slot-detail">
+                A029 漏件提醒<br/>
+                "原因：缺货 / 拿错 / 顾客取消"<br/>
+                3 选项一屏 · 一键提交<br/>
+                返回主单 · 不打断节奏<br/>
+                历史可回看
+              </div>
+            </div>
+          </div>
+          <div class="cap"><b>L2 · 错单回退：</b>从 5 步压到 1 步：选原因 → 提交 → 自动回到主单。错单不打断日清节奏。</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="bottom-bar">
+    <span>16 / 22 · CORE SCREENS</span>
+    <div class="dots"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    <span>WANG ZETIAN · 2026</span>
+  </div>
+</div>
+</body></html>

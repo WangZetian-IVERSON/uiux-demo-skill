@@ -1,0 +1,102 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><title>03 · Contents</title>
+<link rel="stylesheet" href="_deck.css">
+<style>
+  .contents-head{ display:flex; align-items:flex-end; justify-content:space-between; margin-top:32px;}
+  .contents-head .title{ font-family:var(--font-zh-display); font-weight:900; font-size:88px; line-height:1; letter-spacing:-0.01em;}
+  .contents-head .title em{ color:var(--accent); font-style:normal;}
+  .contents-head .meta{ font-family:var(--font-mono); font-size:12px; color:var(--text-faint); letter-spacing:0.1em; text-align:right; line-height:1.7;}
+  .toc{ display:grid; grid-template-columns: repeat(3, 1fr); gap:32px; margin-top:60px; height:680px;}
+  .toc-card{
+    background: var(--surface); border:1px solid var(--hair); border-radius:18px;
+    padding:36px 32px; display:flex; flex-direction:column; gap:18px; position:relative; overflow:hidden;
+  }
+  .toc-card::before{ content:''; position:absolute; top:0; left:0; right:0; height:4px; background:var(--accent);}
+  .toc-card .num{ font-family:var(--font-en-display); font-size:120px; font-weight:900; line-height:0.85; color:var(--text); letter-spacing:-0.04em; opacity:0.95;}
+  .toc-card .num em{ color:var(--accent); font-style:normal;}
+  .toc-card .name-zh{ font-size:32px; font-weight:800; color:var(--text); margin-top:6px;}
+  .toc-card .name-en{ font-family:var(--font-mono); font-size:12px; color:var(--text-faint); letter-spacing:0.1em; text-transform:uppercase;}
+  .toc-card .desc{ font-size:14px; color:var(--text-dim); line-height:1.65; margin-top:6px;}
+  .toc-card .pages{ margin-top:auto; display:flex; flex-direction:column; gap:6px; padding-top:18px; border-top:1px solid var(--hair);}
+  .toc-card .pages .row{ display:grid; grid-template-columns: 38px 1fr 30px; gap:10px; font-size:13px; color:var(--text-dim);}
+  .toc-card .pages .row .p{ font-family:var(--font-mono); color:var(--text-faint); font-size:11px; padding-top:2px;}
+  .toc-card .pages .row .t{ color:var(--text);}
+  .toc-card .pages .row .pg{ font-family:var(--font-mono); color:var(--accent); font-size:11px; text-align:right; padding-top:2px;}
+  .toc-card .domain{ display:flex; gap:6px; flex-wrap:wrap; margin-top:4px;}
+  .toc-card .domain span{ font-family:var(--font-mono); font-size:10px; padding:2px 7px; border:1px solid var(--hair); border-radius:2px; color:var(--text-dim); letter-spacing:0.05em;}
+  .toc-card.t1{ --accent: #ff6a00;}
+  .toc-card.t2{ --accent: #c14b2a;}
+  .toc-card.t3{ --accent: #34d6ff;}
+  .toc-card.t1 .num em, .toc-card.t1 .pages .row .pg{ color:#ff6a00;}
+  .toc-card.t2 .num em, .toc-card.t2 .pages .row .pg{ color:#c14b2a;}
+  .toc-card.t3 .num em, .toc-card.t3 .pages .row .pg{ color:#34d6ff;}
+  .toc-card.t1::before{ background:#ff6a00;}
+  .toc-card.t2::before{ background:#c14b2a;}
+  .toc-card.t3::before{ background:#34d6ff;}
+</style></head>
+<body class="padb-meta">
+<div class="page haze-warm">
+  <div class="top-meta"><span>03 / 22 · CONTENTS</span><span class="right">汪泽田 · 2026 PORTFOLIO</span></div>
+
+  <div class="contents-head">
+    <div class="title">三个项目，<em>三种业务节奏</em></div>
+    <div class="meta">
+      THREE CASES · ONE DESIGNER<br/>
+      C-SIDE COMMERCE · COMMUNITY MARKET · B-SIDE OPERATIONS
+    </div>
+  </div>
+
+  <div class="toc">
+
+    <div class="toc-card t1">
+      <div class="num">0<em>1</em></div>
+      <div class="name-en">PROJECT 01 · M-MALL</div>
+      <div class="name-zh">麦集 · 综合电商 App 改版</div>
+      <div class="domain"><span>C 端</span><span>iOS · Android</span><span>2025-09 → 2026-02</span></div>
+      <div class="desc">把首页金刚位、商品详情、优惠券、支付完成 4 个高摩擦节点重新设计，目标是让首单用户在 3 屏内做出第一次决策。</div>
+      <div class="pages">
+        <div class="row"><span class="p">P05</span><span class="t">业务背景</span><span class="pg">P05</span></div>
+        <div class="row"><span class="p">P06</span><span class="t">5 个具体摩擦点</span><span class="pg">P06</span></div>
+        <div class="row"><span class="p">P07</span><span class="t">竞品对照矩阵</span><span class="pg">P07</span></div>
+        <div class="row"><span class="p">P08</span><span class="t">设计策略 · 3 条原则</span><span class="pg">P08</span></div>
+        <div class="row"><span class="p">P09</span><span class="t">信息架构与流程</span><span class="pg">P09</span></div>
+        <div class="row"><span class="p">P10</span><span class="t">核心界面 · 3 屏</span><span class="pg">P10</span></div>
+        <div class="row"><span class="p">P11</span><span class="t">交互细节</span><span class="pg">P11</span></div>
+        <div class="row"><span class="p">P12</span><span class="t">复盘 · 落地与遗留</span><span class="pg">P12</span></div>
+      </div>
+    </div>
+
+    <div class="toc-card t2">
+      <div class="num">0<em>2</em></div>
+      <div class="name-en">PROJECT 02 · HOMETASTE</div>
+      <div class="name-zh">家味 · 生鲜社区团购</div>
+      <div class="domain"><span>双端</span><span>用户 + 团长</span><span>2024-06 → 2025-01</span></div>
+      <div class="desc">同一个产品两类极不一样的用户：买菜的妈妈和兼职团长。把同一套组件库做成两套使用密度，让团长能在 5 分钟内完成日清。</div>
+      <div class="pages">
+        <div class="row"><span class="p">P14</span><span class="t">用户场景</span><span class="pg">P14</span></div>
+        <div class="row"><span class="p">P15</span><span class="t">双角色对照分析</span><span class="pg">P15</span></div>
+        <div class="row"><span class="p">P16</span><span class="t">核心界面 · 双端 4 屏</span><span class="pg">P16</span></div>
+        <div class="row"><span class="p">P17</span><span class="t">团长数据看板</span><span class="pg">P17</span></div>
+      </div>
+    </div>
+
+    <div class="toc-card t3">
+      <div class="num">0<em>3</em></div>
+      <div class="name-en">PROJECT 03 · TOOLSTUDIO</div>
+      <div class="name-zh">匠工 · B 端工单 SaaS 后台</div>
+      <div class="domain"><span>B 端</span><span>Web Admin</span><span>2023-08 → 2024-04</span></div>
+      <div class="desc">服务全国 200+ 家电服务商，每天处理 1800+ 工单。把"调度员盯着 7 个表格"的低效，重构为一块主控台 + 一条决策动线。</div>
+      <div class="pages">
+        <div class="row"><span class="p">P19</span><span class="t">主控台 · Hero Dashboard</span><span class="pg">P19</span></div>
+        <div class="row"><span class="p">P20</span><span class="t">工单详情 + 组件库</span><span class="pg">P20</span></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="bottom-bar">
+    <span>03 / 22 · CONTENTS</span>
+    <div class="dots"><i></i><i></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    <span>+ 视觉作品 · 海报系列 P21 · 致谢 P22</span>
+  </div>
+</div>
+</body></html>

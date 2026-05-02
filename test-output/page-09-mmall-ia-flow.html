@@ -1,0 +1,143 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><title>09 · M-Mall IA & Flow</title>
+<link rel="stylesheet" href="_deck.css">
+<style>
+  .header{ display:flex; justify-content:space-between; align-items:flex-end; margin-top:24px; gap:48px;}
+  .header .h{ font-family:var(--font-zh-display); font-weight:900; font-size:48px; line-height:1.1;}
+  .header .h em{ color:var(--accent); font-style:normal;}
+  .header .meta{ font-family:var(--font-mono); font-size:11px; color:var(--text-faint); letter-spacing:0.1em; text-align:right; line-height:1.7; min-width:280px;}
+  .canvas{
+    margin-top:36px; background:var(--surface); border:1px solid var(--hair); border-radius:14px;
+    padding:32px; height:820px; position:relative;
+  }
+  .swimlane-label{ position:absolute; left:-2px; top:32px; bottom:32px; width:38px;
+    display:flex; flex-direction:column; justify-content:space-around; font-family:var(--font-mono); font-size:10px; color:var(--text-faint); letter-spacing:0.1em;}
+  .swimlane-label span{ writing-mode:vertical-rl; transform:rotate(180deg);}
+  .lane{ position:absolute; left:60px; right:32px; height:1px; background:var(--hair);}
+  .lane.l1{ top:160px;} .lane.l2{ top:380px;} .lane.l3{ top:600px;} .lane.l4{ top:760px;}
+  .lane-cap{
+    position:absolute; left:64px; font-family:var(--font-mono); font-size:10px;
+    color:var(--text-faint); letter-spacing:0.1em; padding:4px 8px;
+    background:var(--surface); transform:translateY(-50%);
+  }
+  .lane-cap.l1{ top:80px;} .lane-cap.l2{ top:270px;} .lane-cap.l3{ top:490px;} .lane-cap.l4{ top:680px;}
+  .node{
+    position:absolute; background:var(--surface-2); border:1px solid var(--hair); border-radius:8px;
+    padding:10px 14px; font-size:12px; line-height:1.4; color:var(--text); min-width:120px; text-align:center;
+  }
+  .node small{ display:block; font-family:var(--font-mono); font-size:9px; color:var(--text-faint); letter-spacing:0.06em; margin-bottom:4px; text-transform:uppercase;}
+  .node.changed{ border-color:var(--accent); background: rgba(255,106,0,0.08);}
+  .node.changed::after{ content:'改'; position:absolute; top:-8px; right:-8px; width:18px; height:18px; background:var(--accent); color:#000; font-size:10px; font-family:var(--font-mono); border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:700;}
+  .node.removed{ opacity:0.4; text-decoration:line-through;}
+  svg.flow{ position:absolute; inset:0; pointer-events:none; }
+  .arrow-stroke{ stroke: var(--text-faint); stroke-width:1.5; fill:none; opacity:0.6;}
+  .arrow-stroke.hot{ stroke: var(--accent); stroke-width:2; opacity:1;}
+  .arrow-head{ fill: var(--text-faint); opacity:0.8;}
+  .arrow-head.hot{ fill: var(--accent);}
+  .pain-pill{ position:absolute; background:rgba(255,106,0,0.15); border:1px solid var(--accent); color:var(--accent); padding:3px 8px; border-radius:3px; font-family:var(--font-mono); font-size:10px; letter-spacing:0.05em;}
+  .legend{
+    position:absolute; bottom:24px; right:32px; display:flex; gap:24px;
+    font-family:var(--font-mono); font-size:10px; color:var(--text-faint); letter-spacing:0.05em;
+  }
+  .legend .it{ display:flex; align-items:center; gap:6px;}
+  .legend .it i{ width:14px; height:14px; border-radius:3px; display:inline-block;}
+</style></head>
+<body class="padb-mmall">
+<div class="page haze-warm">
+  <div class="concept-badge">[ 概念 / CONCEPT ]</div>
+  <div class="top-meta"><span>09 / 22 · M-MALL · IA & FLOW</span><span class="right">汪泽田 · 2026 PORTFOLIO</span></div>
+
+  <div class="header">
+    <div class="h">改版后的<em>首单决策动线</em>：4 个节点合并为 1 条直线</div>
+    <div class="meta">
+      INFORMATION ARCHITECTURE<br/>
+      4 SWIMLANES · 改 = 改版节点 · 划掉 = 移除
+    </div>
+  </div>
+
+  <div class="canvas">
+    <div class="swimlane-label">
+      <span>启 动 · LAUNCH</span>
+      <span>浏 览 · BROWSE</span>
+      <span>决 策 · DECIDE</span>
+      <span>支 付 · PAY</span>
+    </div>
+
+    <div class="lane l1"></div><div class="lane-cap l1">L1 · 冷启动 / 首页</div>
+    <div class="lane l2"></div><div class="lane-cap l2">L2 · 商品浏览 / 详情</div>
+    <div class="lane l3"></div><div class="lane-cap l3">L3 · 决策 / 加购 / 优惠</div>
+    <div class="lane l4"></div><div class="lane-cap l4">L4 · 支付 / 完成</div>
+
+    <!-- L1 nodes -->
+    <div class="node changed" style="left:90px; top:130px;"><small>L1-A</small>启动闪屏</div>
+    <div class="node changed" style="left:280px; top:110px;"><small>L1-B · 改版核心</small>首页 · 5 金刚位</div>
+    <div class="node removed" style="left:280px; top:178px;"><small>L1-C · 移除</small>低效金刚 ×3</div>
+    <div class="node" style="left:520px; top:130px;"><small>L1-D</small>类目导航</div>
+    <div class="node" style="left:720px; top:130px;"><small>L1-E</small>搜索</div>
+
+    <!-- L2 nodes -->
+    <div class="node" style="left:280px; top:350px;"><small>L2-A</small>商品列表</div>
+    <div class="node changed" style="left:520px; top:350px;"><small>L2-B · 改版核心</small>商品详情 · 1 屏决策</div>
+    <div class="node" style="left:780px; top:350px;"><small>L2-C</small>规格选择</div>
+    <div class="node removed" style="left:520px; top:418px;"><small>L2-D · 移除</small>3 个推荐 banner</div>
+
+    <!-- L3 nodes -->
+    <div class="node" style="left:520px; top:570px;"><small>L3-A</small>购物车</div>
+    <div class="node changed" style="left:780px; top:570px;"><small>L3-B · 改版核心</small>结算页 · 优惠券明示</div>
+    <div class="node" style="left:1040px; top:570px;"><small>L3-C</small>地址 / 配送</div>
+    <div class="node" style="left:1300px; top:570px;"><small>L3-D</small>下单确认</div>
+
+    <!-- L4 nodes -->
+    <div class="node" style="left:1300px; top:730px;"><small>L4-A</small>支付收银台</div>
+    <div class="node changed" style="left:1500px; top:730px;"><small>L4-B · 改版核心</small>完成页 · 确认主轴</div>
+
+    <!-- pain pills -->
+    <div class="pain-pill" style="left:280px; top:230px;">摩擦点 #01 · 38% 启动量浪费</div>
+    <div class="pain-pill" style="left:520px; top:470px;">摩擦点 #02 · 4.2 屏到规格</div>
+    <div class="pain-pill" style="left:780px; top:625px;">摩擦点 #03 · 7 张券无标识</div>
+    <div class="pain-pill" style="left:1500px; top:780px;">摩擦点 #05 · 完成页变广告位</div>
+
+    <!-- arrows -->
+    <svg class="flow" viewBox="0 0 1760 856" preserveAspectRatio="none">
+      <defs>
+        <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+          <path class="arrow-head" d="M0,0 L10,5 L0,10 z"/>
+        </marker>
+        <marker id="ahh" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+          <path class="arrow-head hot" d="M0,0 L10,5 L0,10 z"/>
+        </marker>
+      </defs>
+      <!-- L1 horizontal -->
+      <path class="arrow-stroke" d="M210 145 L280 145" marker-end="url(#ah)"/>
+      <path class="arrow-stroke" d="M450 145 L520 145" marker-end="url(#ah)"/>
+      <path class="arrow-stroke" d="M650 145 L720 145" marker-end="url(#ah)"/>
+      <!-- L1 → L2 hot path -->
+      <path class="arrow-stroke hot" d="M380 175 C380 260 380 280 380 350" marker-end="url(#ahh)"/>
+      <!-- L2 horizontal -->
+      <path class="arrow-stroke" d="M450 385 L520 385" marker-end="url(#ah)"/>
+      <path class="arrow-stroke hot" d="M720 385 L780 385" marker-end="url(#ahh)"/>
+      <!-- L2 → L3 -->
+      <path class="arrow-stroke hot" d="M620 415 C620 510 620 530 620 570" marker-end="url(#ahh)"/>
+      <!-- L3 horizontal -->
+      <path class="arrow-stroke" d="M650 605 L780 605" marker-end="url(#ah)"/>
+      <path class="arrow-stroke hot" d="M940 605 L1040 605" marker-end="url(#ahh)"/>
+      <path class="arrow-stroke" d="M1200 605 L1300 605" marker-end="url(#ah)"/>
+      <!-- L3 → L4 -->
+      <path class="arrow-stroke" d="M1400 605 L1400 730" marker-end="url(#ah)"/>
+      <!-- L4 horizontal -->
+      <path class="arrow-stroke hot" d="M1440 765 L1500 765" marker-end="url(#ahh)"/>
+    </svg>
+
+    <div class="legend">
+      <div class="it"><i style="background:var(--accent);"></i> 改版核心节点</div>
+      <div class="it"><i style="background:var(--surface-2); border:1px solid var(--hair);"></i> 现状沿用</div>
+      <div class="it"><i style="background:var(--accent);height:2px; border-radius:0;"></i> 首单热路径</div>
+    </div>
+  </div>
+
+  <div class="bottom-bar">
+    <span>09 / 22 · IA</span>
+    <div class="dots"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    <span>WANG ZETIAN · 2026</span>
+  </div>
+</div>
+</body></html>

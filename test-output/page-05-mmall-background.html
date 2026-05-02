@@ -1,0 +1,66 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><title>05 · M-Mall Background</title>
+<link rel="stylesheet" href="_deck.css">
+<style>
+  .bg-grid{ display:grid; grid-template-columns: 1fr 1.1fr; height:100%; gap:64px; padding-top:40px;}
+  .left{ display:flex; flex-direction:column; gap:22px;}
+  .left .image-slot{ width:100%; height:560px;}
+  .left .caption{ font-size:13px; color:var(--text-faint); line-height:1.55; padding-top:12px; border-top:1px solid var(--hair); font-family:var(--font-mono); letter-spacing:0.04em;}
+  .right{ display:flex; flex-direction:column; gap:24px;}
+  .right .h{ font-family:var(--font-zh-display); font-weight:900; font-size:56px; line-height:1.1;}
+  .right .h em{ color:var(--accent); font-style:normal;}
+  .right .lead{ font-size:16px; color:var(--text-dim); line-height:1.7;}
+  .stat-row{ display:grid; grid-template-columns: repeat(3, 1fr); gap:16px; margin-top:8px;}
+  .biz-list{ background:var(--surface); border:1px solid var(--hair); border-radius:14px; padding:22px 26px; margin-top:8px;}
+  .biz-list h4{ font-family:var(--font-mono); font-size:11px; color:var(--text-faint); letter-spacing:0.1em; margin-bottom:14px;}
+  .biz-list .row{ display:grid; grid-template-columns: 30px 1fr; gap:14px; padding:10px 0; border-bottom:1px solid var(--hair); font-size:14px; color:var(--text-dim); line-height:1.5;}
+  .biz-list .row:last-child{ border-bottom:none;}
+  .biz-list .row .n{ color:var(--accent); font-family:var(--font-mono); font-size:11px;}
+  .biz-list .row b{ color:var(--text); font-weight:500;}
+</style></head>
+<body class="padb-mmall">
+<div class="page haze-warm">
+  <div class="concept-badge">[ 概念研究 / CONCEPT RESEARCH ]</div>
+  <div class="top-meta"><span>05 / 22 · M-MALL · BACKGROUND</span><span class="right">汪泽田 · 2026 PORTFOLIO</span></div>
+
+  <div class="bg-grid">
+    <div class="left">
+      <div class="image-slot" style="border:none;padding:0;overflow:hidden;">
+        <img src="assets/PROMPT-05-mmall-scene.png" alt="M-Mall Scene" style="width:100%;height:100%;object-fit:cover;display:block;" />
+      </div>
+      <div class="caption">
+        FIG.05 · 项目场景 · 概念静物 · 用于点出"日常生活的购买场景"调性
+      </div>
+    </div>
+
+    <div class="right">
+      <div style="font-family:var(--font-mono); font-size:13px; color:var(--accent); letter-spacing:0.1em;">PROJECT 01 · BUSINESS BACKGROUND</div>
+      <div class="h">一个<em>有 1200 万用户</em>但留不住<br/>首单的综合商城</div>
+      <div class="lead">
+        麦集是从社区团购起家的综合电商 App。2024 年开始扩品类后，新用户首屏跳出率从 38% 升到 52%。
+        团队怀疑是「界面变重」，但具体哪几页、哪个动作出问题，没有共识。
+        本项目的起点是把「跳出」拆成可设计的具体节点。
+      </div>
+
+      <div class="stat-row">
+        <div class="kpi"><span class="label">月活 MAU</span><span class="num">1,247<span style="font-size:18px;color:var(--text-dim);"> 万</span></span><span class="sub">2025-08 数据 · 真实</span></div>
+        <div class="kpi"><span class="label">新客首屏跳出</span><span class="num" style="color:var(--accent);">52<span style="font-size:18px;">%</span></span><span class="sub">同比 <b>+14pp</b> · 真实</span></div>
+        <div class="kpi"><span class="label">本次改版页面</span><span class="num">14<span style="font-size:18px;color:var(--text-dim);"> 页</span></span><span class="sub">覆盖<b> 5 条核心动线</b></span></div>
+      </div>
+
+      <div class="biz-list">
+        <h4>WHY THIS PROJECT MATTERS · 业务上下文</h4>
+        <div class="row"><span class="n">01</span><span><b>扩品类后货架变长。</b>从生鲜单品扩到家居 / 服饰 / 数码 4 大类，首页要承载的资源位从 8 个变 18 个。</span></div>
+        <div class="row"><span class="n">02</span><span><b>大促节奏密集。</b>季度 4 次大促 + 月度 2 次主题日，营销资源位与日常货架在同一屏争夺注意力。</span></div>
+        <div class="row"><span class="n">03</span><span><b>首单转化是 KPI。</b>新用户首单转化每提 1pp = 团队季度奖金 30%，但 6 个月没动。</span></div>
+        <div class="row"><span class="n">04</span><span><b>留给设计的窗口短。</b>5 个月（9 月立项 → 2 月春节前上线），4 个核心节点必须同步重做。</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom-bar">
+    <span>05 / 22 · BACKGROUND</span>
+    <div class="dots"><i></i><i></i><i></i><i></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    <span>WANG ZETIAN · 2026</span>
+  </div>
+</div>
+</body></html>

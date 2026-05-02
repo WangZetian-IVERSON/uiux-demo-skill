@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>汪泽田 · UIUX 作品集 · 京东投递版 · 22 页 Storyboard 预览</title>
+<style>
+  :root{
+    --bg:#0a0a0c; --surface:#141418; --hair:#26262d;
+    --text:#f4f1ec; --text-dim:#a8a39b; --text-faint:#62605c;
+    --accent:#ff6a00; --accent-2:#ffb454;
+    --jd-red:#e1251b;
+  }
+  *{ box-sizing:border-box; margin:0; padding:0;}
+  html, body{ background:var(--bg); color:var(--text); font-family: -apple-system, "PingFang SC", "Segoe UI", system-ui, sans-serif;}
+  body{ display:flex; min-height:100vh;}
+
+  /* Sidebar */
+  aside{
+    width:280px; background:var(--surface); border-right:1px solid var(--hair);
+    padding:28px 22px; position:sticky; top:0; height:100vh; overflow-y:auto;
+    flex-shrink:0;
+  }
+  aside h1{ font-size:18px; font-weight:800; line-height:1.3;}
+  aside h1 small{ display:block; font-size:11px; color:var(--text-faint); font-weight:400; letter-spacing:0.06em; margin-top:6px;}
+  aside .meta{ margin-top:18px; padding-top:18px; border-top:1px solid var(--hair); font-size:11px; color:var(--text-dim); line-height:1.7; font-family:"JetBrains Mono", monospace;}
+  aside .meta b{ color:var(--accent); font-weight:500;}
+  aside nav{ margin-top:22px; display:flex; flex-direction:column; gap:1px;}
+  aside nav .group{ font-size:10px; color:var(--text-faint); letter-spacing:0.1em; padding:14px 8px 6px; text-transform:uppercase; font-family:"JetBrains Mono", monospace;}
+  aside nav a{
+    display:flex; gap:10px; align-items:baseline; padding:8px 10px; border-radius:6px;
+    color:var(--text-dim); text-decoration:none; font-size:13px; line-height:1.4;
+    transition: background .15s, color .15s;
+  }
+  aside nav a:hover{ background:#1d1d22; color:var(--text);}
+  aside nav a .num{ font-family:"JetBrains Mono", monospace; font-size:11px; color:var(--text-faint); min-width:22px;}
+  aside nav a:hover .num{ color:var(--accent);}
+  aside .footer{ margin-top:24px; padding-top:18px; border-top:1px solid var(--hair); font-size:10px; color:var(--text-faint); line-height:1.7; font-family:"JetBrains Mono", monospace;}
+  aside .footer span{ color:var(--accent-2);}
+
+  /* Stage */
+  main{ flex:1; padding:32px 32px 80px; min-width:0;}
+  main > h2{ font-size:14px; color:var(--text-faint); font-weight:500; letter-spacing:0.08em; margin-bottom:18px; font-family:"JetBrains Mono", monospace;}
+
+  .page-block{ margin-bottom:48px; scroll-margin-top:20px;}
+  .page-block .label{
+    display:flex; align-items:center; gap:14px; padding:0 0 12px; margin-bottom:10px;
+    border-bottom:1px solid var(--hair);
+  }
+  .page-block .label .n{ font-family:"JetBrains Mono", monospace; font-size:11px; color:var(--accent); padding:3px 9px; border:1px solid var(--accent); border-radius:3px;}
+  .page-block .label .name{ font-size:14px; color:var(--text); font-weight:600;}
+  .page-block .label .lane{ margin-left:auto; font-family:"JetBrains Mono", monospace; font-size:10px; color:var(--text-faint); letter-spacing:0.06em;}
+  .frame-wrap{
+    width:100%; max-width:1280px; aspect-ratio: 16/9;
+    background:#000; border:1px solid var(--hair); border-radius:8px; overflow:hidden;
+    box-shadow: 0 12px 28px rgba(0,0,0,0.5);
+  }
+  .frame-wrap iframe{
+    width:1920px; height:1080px;
+    transform-origin: top left;
+    transform: scale(calc(1280 / 1920));
+    border:none; display:block;
+  }
+  /* Responsive scale */
+  @media (max-width: 1700px){
+    .frame-wrap{ max-width:1080px;}
+    .frame-wrap iframe{ transform: scale(calc(1080 / 1920));}
+  }
+  @media (max-width: 1400px){
+    .frame-wrap{ max-width:900px;}
+    .frame-wrap iframe{ transform: scale(calc(900 / 1920));}
+  }
+
+  .page-block .open{
+    display:inline-block; margin-top:10px; padding:6px 12px; border:1px solid var(--hair);
+    border-radius:4px; font-family:"JetBrains Mono", monospace; font-size:11px;
+    color:var(--text-dim); text-decoration:none;
+  }
+  .page-block .open:hover{ color:var(--accent); border-color:var(--accent);}
+</style>
+</head>
+<body>
+
+<aside>
+  <h1>汪泽田 · UIUX 作品集<small>JD · 电商运营设计师投递版 · 22 PAGES STORYBOARD</small></h1>
+  <div class="meta">
+    SMOKE TEST · 2026<br/>
+    PROMPT_PACK_ONLY 模式<br/>
+    <b>图片占位框 = 待外部模型生成</b>
+  </div>
+
+  <nav>
+    <div class="group">DECK META</div>
+    <a href="#p01"><span class="num">01</span>封面 · 把货架变成场景</a>
+    <a href="#p02"><span class="num">02</span>个人介绍 · About</a>
+    <a href="#p03"><span class="num">03</span>目录 · Contents</a>
+
+    <div class="group">PROJECT 01 · M-MALL</div>
+    <a href="#p04"><span class="num">04</span>项目封面</a>
+    <a href="#p05"><span class="num">05</span>背景 · Background</a>
+    <a href="#p06"><span class="num">06</span>问题诊断 · 5 个核心问题</a>
+    <a href="#p07"><span class="num">07</span>竞品矩阵</a>
+    <a href="#p08"><span class="num">08</span>设计策略 · 3 原则</a>
+    <a href="#p09"><span class="num">09</span>信息架构 · 流程图</a>
+    <a href="#p10"><span class="num">10</span>核心界面 · 3 屏</a>
+    <a href="#p11"><span class="num">11</span>细节模块</a>
+    <a href="#p12"><span class="num">12</span>复盘 · 已 / 未做</a>
+
+    <div class="group">PROJECT 02 · HOMETASTE</div>
+    <a href="#p13"><span class="num">13</span>项目封面</a>
+    <a href="#p14"><span class="num">14</span>背景 · 双角色</a>
+    <a href="#p15"><span class="num">15</span>双角色对照矩阵</a>
+    <a href="#p16"><span class="num">16</span>核心界面 · 用户/团长</a>
+    <a href="#p17"><span class="num">17</span>团长后台主面板</a>
+
+    <div class="group">PROJECT 03 · TOOLSTUDIO</div>
+    <a href="#p18"><span class="num">18</span>项目封面</a>
+    <a href="#p19"><span class="num">19</span>主控台 Dashboard</a>
+    <a href="#p20"><span class="num">20</span>工单详情 + 组件库</a>
+
+    <div class="group">APPENDIX</div>
+    <a href="#p21"><span class="num">21</span>海报系列 · 4 张</a>
+    <a href="#p22"><span class="num">22</span>谢谢 · 联系方式</a>
+  </nav>
+
+  <div class="footer">
+    OUTPUT MODE<br/>
+    <span>PROMPT_PACK_ONLY</span><br/>
+    见 jd-portfolio-test-run.md<br/>
+    用 Nano Banana Pro / Gemini 3<br/>
+    Pro Image 跑后回填占位框
+  </div>
+</aside>
+
+<main>
+  <h2>// 22 PAGES · 1920×1080 · ALL PAGES IN VIEW (SCROLL VERTICALLY)</h2>
+
+  <div class="page-block" id="p01"><div class="label"><span class="n">01</span><span class="name">封面 · 把货架变成场景</span><span class="lane">PADB-meta · DOC_REPORT</span></div><div class="frame-wrap"><iframe src="page-01-cover.html"></iframe></div><a class="open" href="page-01-cover.html" target="_blank">单独打开 ↗</a></div>
+
+  <div class="page-block" id="p02"><div class="label"><span class="n">02</span><span class="name">个人介绍 · About</span><span class="lane">PADB-meta · DOC_REPORT</span></div><div class="frame-wrap"><iframe src="page-02-profile.html"></iframe></div><a class="open" href="page-02-profile.html" target="_blank">单独打开 ↗</a></div>
+
+  <div class="page-block" id="p03"><div class="label"><span class="n">03</span><span class="name">目录 · Contents</span><span class="lane">PADB-meta · DOC_REPORT</span></div><div class="frame-wrap"><iframe src="page-03-contents.html"></iframe></div><a class="open" href="page-03-contents.html" target="_blank">单独打开 ↗</a></div>
+
+  <div class="page-block" id="p04"><div class="label"><span class="n">04</span><span class="name">M-Mall · 项目封面</span><span class="lane">PADB-1 · DOC_REPORT</span></div><div class="frame-wrap"><iframe src="page-04-mmall-section.html"></iframe></div><a class="open" href="page-04-mmall-section.html" target="_blank">单独打开 ↗</a></div>
+
+  <div class="page-block" id="p05"><div class="label"><span class="n">05</span><span class="name">M-Mall · 背景</span><span class="lane">PADB-1 · DOC_REPORT</span></div><div class="frame-wrap"><iframe src="page-05-mmall-background.html"></iframe></div><a class="open" href="page-05-mmall-background.html" target="_blank">单独打开 ↗</a></div>
+
+  <div class="page-block" id="p06"><div class="label"><span class="n">06</span><span class="name">M-Mall · 问题诊断</span><span class="lane">PADB-1 · DOC_REPORT</span></div><div class="frame-wrap"><iframe src="page-06-mmall-problem-diagnosis.html"></iframe></div><a class="open" href="page-06-mmall-problem-diagnosis.html" target="_blank">单独打开 ↗</a></div>
+
+  <div class="page-block" id="p07"><div class="label"><span class="n">07</span><span class="name">M-Mall · 竞品矩阵</span><span class="lane">PADB-1 · DOC_REPORT</span></div><div class="frame-wrap"><iframe src="page-07-mmall-competitive.html"></iframe></div><a class="open" href="page-07-mmall-competitive.html" target="_blank">单独打开 ↗</a></div>
+
+  <div class="page-block" id="p08"><div class="label"><span class="n">08</span><span class="name">M-Mall · 设计策略 · 3 原则</span><span class="lane">PADB-1 · DOC_REPORT</span></div><div class="frame-wrap"><iframe src="page-08-mmall-strategy.html"></iframe></div><a class="open" href="page-08-mmall-strategy.html" target="_blank">单独打开 ↗</a></div>
+
+  <div class="page-block" id="p09"><div class="label"><span class="n">09</span><span class="name">M-Mall · 信息架构 · 流程图</span><span class="lane">PADB-1 · DOC_REPORT</span></div><div class="frame-wrap"><iframe src="page-09-mmall-ia-flow.html"></iframe></div><a class="open" href="page-09-mmall-ia-flow.html" target="_blank">单独打开 ↗</a></div>
+
+  <div class="page-block" id="p10"><div class="label"><span class="n">10</span><span class="name">M-Mall · 核心界面 · 3 屏</span><span class="lane">PADB-1 · VISUAL_PROPOSAL</span></div><div class="frame-wrap"><iframe src="page-10-mmall-core-screens.html"></iframe></div><a class="open" href="page-10-mmall-core-screens.html" target="_blank">单独打开 ↗</a></div>
+
+  <div class="page-block" id="p11"><div class="label"><span class="n">11</span><span class="name">M-Mall · 细节模块</span><span class="lane">PADB-1 · VISUAL_PROPOSAL</span></div><div class="frame-wrap"><iframe src="page-11-mmall-detail.html"></iframe></div><a class="open" href="page-11-mmall-detail.html" target="_blank">单独打开 ↗</a></div>
+
+  <div class="page-block" id="p12"><div class="label"><span class="n">12</span><span class="name">M-Mall · 复盘</span><span class="lane">PADB-1 · DOC_REPORT</span></div><div class="frame-wrap"><iframe src="page-12-mmall-reflection.html"></iframe></div><a class="open" href="page-12-mmall-reflection.html" target="_blank">单独打开 ↗</a></div>
+
+  <div class="page-block" id="p13"><div class="label"><span class="n">13</span><span class="name">Hometaste · 项目封面</span><span class="lane">PADB-2 · DOC_REPORT</span></div><div class="frame-wrap"><iframe src="page-13-hometaste-section.html"></iframe></div><a class="open" href="page-13-hometaste-section.html" target="_blank">单独打开 ↗</a></div>
+
+  <div class="page-block" id="p14"><div class="label"><span class="n">14</span><span class="name">Hometaste · 背景</span><span class="lane">PADB-2 · DOC_REPORT</span></div><div class="frame-wrap"><iframe src="page-14-hometaste-background.html"></iframe></div><a class="open" href="page-14-hometaste-background.html" target="_blank">单独打开 ↗</a></div>
+
+  <div class="page-block" id="p15"><div class="label"><span class="n">15</span><span class="name">Hometaste · 双角色对照</span><span class="lane">PADB-2 · DOC_REPORT</span></div><div class="frame-wrap"><iframe src="page-15-hometaste-dual-role.html"></iframe></div><a class="open" href="page-15-hometaste-dual-role.html" target="_blank">单独打开 ↗</a></div>
+
+  <div class="page-block" id="p16"><div class="label"><span class="n">16</span><span class="name">Hometaste · 核心界面</span><span class="lane">PADB-2 · VISUAL_PROPOSAL</span></div><div class="frame-wrap"><iframe src="page-16-hometaste-core-screens.html"></iframe></div><a class="open" href="page-16-hometaste-core-screens.html" target="_blank">单独打开 ↗</a></div>
+
+  <div class="page-block" id="p17"><div class="label"><span class="n">17</span><span class="name">Hometaste · 团长后台主面板</span><span class="lane">PADB-2 · HTML_DASHBOARD</span></div><div class="frame-wrap"><iframe src="page-17-hometaste-leader-dashboard.html"></iframe></div><a class="open" href="page-17-hometaste-leader-dashboard.html" target="_blank">单独打开 ↗</a></div>
+
+  <div class="page-block" id="p18"><div class="label"><span class="n">18</span><span class="name">ToolStudio · 项目封面</span><span class="lane">PADB-3 · DOC_REPORT</span></div><div class="frame-wrap"><iframe src="page-18-toolstudio-section.html"></iframe></div><a class="open" href="page-18-toolstudio-section.html" target="_blank">单独打开 ↗</a></div>
+
+  <div class="page-block" id="p19"><div class="label"><span class="n">19</span><span class="name">ToolStudio · 主控台 Dashboard</span><span class="lane">PADB-3 · HTML_DASHBOARD</span></div><div class="frame-wrap"><iframe src="page-19-toolstudio-dashboard.html"></iframe></div><a class="open" href="page-19-toolstudio-dashboard.html" target="_blank">单独打开 ↗</a></div>
+
+  <div class="page-block" id="p20"><div class="label"><span class="n">20</span><span class="name">ToolStudio · 工单详情 + 组件库</span><span class="lane">PADB-3 · HTML_DASHBOARD</span></div><div class="frame-wrap"><iframe src="page-20-toolstudio-detail-components.html"></iframe></div><a class="open" href="page-20-toolstudio-detail-components.html" target="_blank">单独打开 ↗</a></div>
+
+  <div class="page-block" id="p21"><div class="label"><span class="n">21</span><span class="name">附录 · 海报系列 · 4 张</span><span class="lane">PADB-1 · POSTER_BATCH</span></div><div class="frame-wrap"><iframe src="page-21-poster-series.html"></iframe></div><a class="open" href="page-21-poster-series.html" target="_blank">单独打开 ↗</a></div>
+
+  <div class="page-block" id="p22"><div class="label"><span class="n">22</span><span class="name">谢谢 · 联系方式</span><span class="lane">PADB-meta · DOC_REPORT</span></div><div class="frame-wrap"><iframe src="page-22-thanks.html"></iframe></div><a class="open" href="page-22-thanks.html" target="_blank">单独打开 ↗</a></div>
+
+</main>
+
+</body>
+</html>

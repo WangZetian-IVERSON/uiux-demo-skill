@@ -1,0 +1,72 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><title>02 · Profile</title>
+<link rel="stylesheet" href="_deck.css">
+<style>
+  .profile{ display:grid; grid-template-columns: 1.4fr 1fr; height:100%; gap:80px; padding-top:48px;}
+  .left{ display:flex; flex-direction:column; gap:28px;}
+  .name-row{ display:flex; align-items:baseline; gap:24px;}
+  .name{ font-family:var(--font-zh-display); font-weight:900; font-size:96px; line-height:1; letter-spacing:-0.01em;}
+  .name-en{ font-family:var(--font-en-display); font-style:italic; font-size:32px; color:var(--text-dim);}
+  .role{ font-size:22px; color:var(--text-dim); line-height:1.6; max-width:760px;}
+  .role b{ color:var(--accent); font-weight:600;}
+  .pillars{ display:grid; grid-template-columns: repeat(3,1fr); gap:18px; margin-top:8px;}
+  .pillar{ background:var(--surface); border:1px solid var(--hair); border-radius:12px; padding:20px 22px; }
+  .pillar .num{ font-family:var(--font-mono); font-size:11px; color:var(--accent); letter-spacing:0.1em;}
+  .pillar h4{ font-size:18px; font-weight:700; margin:8px 0 8px; color:var(--text);}
+  .pillar p{ font-size:13px; color:var(--text-dim); line-height:1.6;}
+  .meta-card{ background:var(--surface); border:1px solid var(--hair); border-radius:14px; padding:28px 32px; display:flex; flex-direction:column; gap:14px; align-self:start;}
+  .meta-card .row{ display:grid; grid-template-columns: 80px 1fr; gap:8px; padding:10px 0; border-bottom:1px solid var(--hair); font-size:14px;}
+  .meta-card .row:last-child{ border-bottom:none;}
+  .meta-card .k{ color:var(--text-faint); font-family:var(--font-mono); font-size:11px; letter-spacing:0.05em; padding-top:2px;}
+  .meta-card .v{ color:var(--text);}
+  .meta-card h3{ font-family:var(--font-mono); font-size:11px; color:var(--text-faint); letter-spacing:0.1em; margin-bottom:4px;}
+  .skill-tags{ display:flex; flex-wrap:wrap; gap:6px; margin-top:10px;}
+  .skill-tags span{ font-family:var(--font-mono); font-size:11px; padding:3px 9px; border:1px solid var(--hair); border-radius:3px; color:var(--text-dim);}
+</style></head>
+<body class="padb-meta">
+<div class="page haze-warm">
+  <div class="top-meta"><span>02 / 22 · PROFILE</span><span class="right">汪泽田 · 2026 PORTFOLIO</span></div>
+
+  <div class="profile">
+    <div class="left">
+      <div class="name-row">
+        <div class="name">汪泽田</div>
+        <div class="name-en">Wang Zetian</div>
+      </div>
+      <div class="role">
+        <b>电商运营设计师 · 6 年</b><br/>
+        把"卖货"翻译成"用户能看懂、愿意点、记得住"的视觉与流程。<br/>
+        擅长 C 端商品场景化、营销资源位重构、B 端运营后台与数据看板。
+      </div>
+
+      <div class="pillars">
+        <div class="pillar"><div class="num">01</div><h4>商业理解</h4><p>把转化漏斗、客单、复购拆成具体的页面动作，不是只做漂亮图。</p></div>
+        <div class="pillar"><div class="num">02</div><h4>系统化视觉</h4><p>从单页设计到组件库与运营物料体系，覆盖大促 / 日常 / 会员场景。</p></div>
+        <div class="pillar"><div class="num">03</div><h4>跨端协作</h4><p>iOS / Android / H5 / 后台四端打通，常驻沟通：PM / 前端 / 数据 / 运营。</p></div>
+      </div>
+    </div>
+
+    <div class="meta-card">
+      <h3>BASIC INFO</h3>
+      <div class="row"><span class="k">所在地</span><span class="v">上海 · 静安</span></div>
+      <div class="row"><span class="k">学历</span><span class="v">同济大学 · 数字媒体艺术 · 2020</span></div>
+      <div class="row"><span class="k">工龄</span><span class="v">6 年 · 4 段经历</span></div>
+      <div class="row"><span class="k">工具</span><span class="v">Figma · Sketch · Principle · After Effects · Cinema 4D</span></div>
+      <div class="row"><span class="k">代码</span><span class="v">HTML / CSS · 阅读 React · 写设计原型</span></div>
+      <div class="row"><span class="k">语言</span><span class="v">中文 · English (Working)</span></div>
+
+      <h3 style="margin-top:8px;">SKILL STACK</h3>
+      <div class="skill-tags">
+        <span>商品体验</span><span>资源位策略</span><span>营销视觉</span><span>会员体系</span>
+        <span>数据可视化</span><span>组件库</span><span>设计规范</span><span>用户研究</span>
+        <span>动效</span><span>3D / C4D</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom-bar">
+    <span>02 / 22 · PROFILE</span>
+    <div class="dots"><i></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    <span>WANG ZETIAN · 2026</span>
+  </div>
+</div>
+</body></html>

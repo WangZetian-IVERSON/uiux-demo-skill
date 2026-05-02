@@ -123,7 +123,7 @@ uiux-portfolio-deck/
 │   ├── render_screenshot.py          #   → Playwright screenshot
 │   └── ...
 └── vendor/                           # Deck stage & export tools
-    └── huashu-design/
+    └── design-assets/
         ├── assets/deck_stage.js      #   → Keyboard navigation + page switching
         └── scripts/                  #   → PDF/PPTX export
 ```
@@ -153,4 +153,4 @@ See `scripts/config.py` for all options. Quick reference:
 
 ## License
 
-MIT — see `vendor/huashu-design/LICENSE`.
+MIT — see `vendor/design-assets/LICENSE`.

@@ -1,0 +1,129 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><title>21 · Poster Series</title>
+<link rel="stylesheet" href="_deck.css">
+<style>
+  .header{ display:flex; justify-content:space-between; align-items:flex-end; margin-top:24px; gap:48px;}
+  .header .h{ font-family:var(--font-zh-display); font-weight:900; font-size:50px; line-height:1.1;}
+  .header .h em{ color:var(--accent); font-style:normal;}
+  .header .meta{ font-family:var(--font-mono); font-size:11px; color:var(--text-faint); letter-spacing:0.1em; text-align:right; line-height:1.7; min-width:280px;}
+
+  .grid{ margin-top:36px; display:grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap:24px; height:780px; align-items:stretch;}
+  .poster{
+    aspect-ratio: 3/4; position:relative; border-radius:14px; overflow:hidden;
+    border:1px solid var(--hair); display:flex; flex-direction:column;
+    background: linear-gradient(160deg, var(--surface) 0%, var(--surface-2) 100%);
+  }
+  /* Master motif: warm-amber arc — present in all 4 posters at same position */
+  .poster::before{
+    content:''; position:absolute; inset:0;
+    background: radial-gradient(ellipse 80% 60% at 90% -10%, rgba(255,106,0,0.45) 0%, transparent 60%);
+    pointer-events:none;
+  }
+  .poster::after{
+    content:''; position:absolute; right:-20%; top:-30%; width:140%; height:120%;
+    border:2px solid rgba(255,180,84,0.5);
+    border-radius:50%;
+    pointer-events:none;
+  }
+  .poster.master{ border:2px solid var(--accent);}
+  .poster .image-slot{ flex:1; border-radius:0; padding:20px; border:none; background:transparent;}
+  .poster .image-slot::before{ display:none;}
+  .poster .image-slot .slot-tag{ font-size:9px; padding:2px 7px;}
+  .poster .image-slot .slot-name{ font-size:13px; margin-bottom:4px;}
+  .poster .image-slot .slot-detail{ font-size:10px; line-height:1.5;}
+  .poster .footer{
+    padding:16px 18px; background:rgba(0,0,0,0.4); backdrop-filter:blur(6px);
+    border-top:1px solid var(--hair); position:relative; z-index:2;
+  }
+  .poster .footer .label-en{ font-family:var(--font-mono); font-size:10px; color:var(--accent); letter-spacing:0.1em;}
+  .poster .footer .title-zh{ font-family:var(--font-zh-display); font-size:28px; font-weight:900; color:var(--text); margin-top:4px; line-height:1; letter-spacing:-0.01em;}
+  .poster .footer .title-zh em{ color:var(--accent); font-style:normal; display:block; font-size:14px; font-weight:500; margin-top:6px; letter-spacing:0;}
+  .poster .footer .tag-row{ display:flex; gap:6px; margin-top:10px;}
+  .poster .footer .tag-row span{ font-family:var(--font-mono); font-size:9px; padding:2px 7px; border:1px solid var(--hair); border-radius:2px; color:var(--text-dim);}
+  .poster .seq{ position:absolute; top:14px; left:14px; font-family:var(--font-mono); font-size:10px; color:var(--accent); border:1px solid var(--accent); padding:3px 8px; border-radius:2px; z-index:3; background:rgba(0,0,0,0.4);}
+  .poster.master .seq{ background:var(--accent); color:#000; font-weight:700;}
+
+  .note{
+    margin-top:18px; padding:18px 24px; background:var(--surface); border:1px solid var(--hair); border-radius:10px;
+    display:grid; grid-template-columns: 1fr 1fr 1fr; gap:24px; font-size:13px; color:var(--text-dim); line-height:1.7;
+  }
+  .note .it b{ color:var(--text); font-family:var(--font-mono); font-size:11px; letter-spacing:0.05em; display:block; margin-bottom:4px; color:var(--accent);}
+</style></head>
+<body class="padb-mmall">
+<div class="page haze-warm">
+  <div class="concept-badge">[ 概念 · 设计提案 / DESIGN PROPOSAL ]</div>
+  <div class="top-meta"><span>21 / 22 · APPENDIX · POSTER SERIES</span><span class="right">汪泽田 · 2026 PORTFOLIO</span></div>
+
+  <div class="header">
+    <div class="h">M-Mall · 季节营销海报系列：<em>1 个母题 + 4 个变体</em></div>
+    <div class="meta">
+      CAMPAIGN POSTER BATCH<br/>
+      MASTER MOTIF · 暖光弧线 · 4 SEASONS<br/>
+      SHOWCASE = #1 · BATCH #2-4 待生成
+    </div>
+  </div>
+
+  <div class="grid">
+
+    <div class="poster master">
+      <div class="seq">MASTER · #01</div>
+      <div class="image-slot" style="border:none;padding:0;overflow:hidden;">
+        <img src="assets/PROMPT-04-poster-master.png" alt="Summer Poster Master" style="width:100%;height:100%;object-fit:cover;display:block;" />
+      </div>
+      <div class="footer">
+        <div class="label-en">SUMMER · CAMPAIGN 06</div>
+        <div class="title-zh">夏日狂欢<em>06.18 · 全场满 199-30</em></div>
+        <div class="tag-row"><span>家居</span><span>服饰</span><span>饮品</span></div>
+      </div>
+    </div>
+
+    <div class="poster">
+      <div class="seq">QUEUED · #02</div>
+      <div class="image-slot" style="border:none;padding:0;overflow:hidden;">
+        <img src="assets/PROMPT-21B-poster-autumn.png" alt="Autumn Mid-Autumn Poster" style="width:100%;height:100%;object-fit:cover;display:block;" />
+      </div>
+      <div class="footer">
+        <div class="label-en">AUTUMN · CAMPAIGN 09</div>
+        <div class="title-zh">秋礼小满<em>09.15 · 中秋限定礼盒</em></div>
+        <div class="tag-row"><span>食品</span><span>礼盒</span></div>
+      </div>
+    </div>
+
+    <div class="poster">
+      <div class="seq">QUEUED · #03</div>
+      <div class="image-slot" style="border:none;padding:0;overflow:hidden;">
+        <img src="assets/PROMPT-21C-poster-1111.png" alt="11.11 Big Promo Poster" style="width:100%;height:100%;object-fit:cover;display:block;" />
+      </div>
+      <div class="footer">
+        <div class="label-en">11.11 · BIG PROMO</div>
+        <div class="title-zh">双11<em>11.01-11.11 · 跨店满 300-50</em></div>
+        <div class="tag-row"><span>全品类</span><span>大促</span></div>
+      </div>
+    </div>
+
+    <div class="poster">
+      <div class="seq">QUEUED · #04</div>
+      <div class="image-slot" style="border:none;padding:0;overflow:hidden;">
+        <img src="assets/PROMPT-21D-poster-spring.png" alt="Spring New Year Poster" style="width:100%;height:100%;object-fit:cover;display:block;" />
+      </div>
+      <div class="footer">
+        <div class="label-en">SPRING · NEW YEAR</div>
+        <div class="title-zh">春上新<em>01.20 · 年货季 · 全国包邮</em></div>
+        <div class="tag-row"><span>年货</span><span>家居</span><span>食品</span></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="note">
+    <div class="it"><b>SHOWCASE-FIRST</b>本次只生成母版 #1（PROMPT-04, 4 candidates 选 1）。Master 通过 5 轴一致性 QA 后，再批量产 #2-4 并以 master 作为 reference image。</div>
+    <div class="it"><b>MASTER MOTIF</b>所有 4 张都包含<b>暖光弧线</b>从右上扫到左下，弧线位置和曲率必须一致 — 这是系列感的"指纹"。</div>
+    <div class="it"><b>TYPOGRAPHY</b>所有标题在 HTML 层叠加，不在图片内渲染中文字。母版图片本身留出顶部 25% 标题安全区。</div>
+  </div>
+
+  <div class="bottom-bar">
+    <span>21 / 22 · POSTER SERIES</span>
+    <div class="dots"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="on"></i><i></i></div>
+    <span>WANG ZETIAN · 2026</span>
+  </div>
+</div>
+</body></html>

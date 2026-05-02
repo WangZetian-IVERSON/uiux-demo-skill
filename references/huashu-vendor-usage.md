@@ -1,4 +1,4 @@
-# Huashu Vendor Usage
+﻿# Huashu Vendor Usage
 
 ## Purpose
 
@@ -12,7 +12,7 @@ The vendored files come from:
 https://github.com/alchaincyf/huashu-design
 ```
 
-They are under Huashu Design Personal Use License. The local copy is for personal learning and non-commercial experimentation only. Preserve `vendor/huashu-design/LICENSE` and do not present these files as original work.
+They are under Huashu Design Personal Use License. The local copy is for personal learning and non-commercial experimentation only. Preserve `vendor/design-assets/LICENSE` and do not present these files as original work.
 
 Do not use the vendored Huashu files for company/team tools, paid client delivery, commercial products, paid templates, or commercial training without permission from the original author.
 
@@ -20,24 +20,24 @@ Do not use the vendored Huashu files for company/team tools, paid client deliver
 
 Core assets:
 
-- `vendor/huashu-design/assets/deck_stage.js`: 1920x1080 deck stage, scaling, keyboard navigation, hash navigation, print/export support.
-- `vendor/huashu-design/assets/deck_index.html`: index shell for multi-file slide decks.
-- `vendor/huashu-design/assets/design_canvas.jsx`: design variation canvas for showing multiple concepts.
-- `vendor/huashu-design/assets/ios_frame.jsx`: iPhone frame component.
-- `vendor/huashu-design/assets/android_frame.jsx`: Android frame component.
-- `vendor/huashu-design/assets/browser_window.jsx`: browser window component.
-- `vendor/huashu-design/assets/macos_window.jsx`: macOS window component.
-- `vendor/huashu-design/assets/animations.jsx`: animation helpers for video-like outputs.
-- `vendor/huashu-design/assets/showcases`: upstream sample HTML/PNG references.
+- `vendor/design-assets/assets/deck_stage.js`: 1920x1080 deck stage, scaling, keyboard navigation, hash navigation, print/export support.
+- `vendor/design-assets/assets/deck_index.html`: index shell for multi-file slide decks.
+- `vendor/design-assets/assets/design_canvas.jsx`: design variation canvas for showing multiple concepts.
+- `vendor/design-assets/assets/ios_frame.jsx`: iPhone frame component.
+- `vendor/design-assets/assets/android_frame.jsx`: Android frame component.
+- `vendor/design-assets/assets/browser_window.jsx`: browser window component.
+- `vendor/design-assets/assets/macos_window.jsx`: macOS window component.
+- `vendor/design-assets/assets/animations.jsx`: animation helpers for video-like outputs.
+- `vendor/design-assets/assets/showcases`: upstream sample HTML/PNG references.
 
 Core scripts:
 
-- `vendor/huashu-design/scripts/export_deck_pdf.mjs`: export deck to PDF.
-- `vendor/huashu-design/scripts/export_deck_pptx.mjs`: export deck to PPTX.
-- `vendor/huashu-design/scripts/export_deck_stage_pdf.mjs`: export deck-stage output to PDF.
-- `vendor/huashu-design/scripts/html2pptx.js`: HTML to PPTX conversion helper.
-- `vendor/huashu-design/scripts/render-video.js`: render HTML animation to video.
-- `vendor/huashu-design/scripts/verify.py`: output verification helper.
+- `vendor/design-assets/scripts/export_deck_pdf.mjs`: export deck to PDF.
+- `vendor/design-assets/scripts/export_deck_pptx.mjs`: export deck to PPTX.
+- `vendor/design-assets/scripts/export_deck_stage_pdf.mjs`: export deck-stage output to PDF.
+- `vendor/design-assets/scripts/html2pptx.js`: HTML to PPTX conversion helper.
+- `vendor/design-assets/scripts/render-video.js`: render HTML animation to video.
+- `vendor/design-assets/scripts/verify.py`: output verification helper.
 
 ## How To Use For UI/UX Portfolio Work
 

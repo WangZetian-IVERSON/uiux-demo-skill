@@ -1,0 +1,87 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><title>08 · M-Mall Strategy</title>
+<link rel="stylesheet" href="_deck.css">
+<style>
+  .header{ display:flex; justify-content:space-between; align-items:flex-end; margin-top:32px; gap:48px;}
+  .header .h{ font-family:var(--font-zh-display); font-weight:900; font-size:54px; line-height:1.1; max-width:1100px;}
+  .header .h em{ color:var(--accent); font-style:normal;}
+  .header .meta{ font-family:var(--font-mono); font-size:12px; color:var(--text-faint); letter-spacing:0.1em; text-align:right; line-height:1.7; min-width:300px;}
+  .principles{ display:grid; grid-template-columns: repeat(3, 1fr); gap:24px; margin-top:50px; height:760px;}
+  .p-card{ background:var(--surface); border:1px solid var(--hair); border-radius:18px; padding:36px 36px; display:flex; flex-direction:column; gap:18px; position:relative; overflow:hidden;}
+  .p-card .num{ font-family:var(--font-en-display); font-weight:900; font-size:140px; line-height:0.85; letter-spacing:-0.05em; color:var(--accent); opacity:0.95;}
+  .p-card .name-en{ font-family:var(--font-mono); font-size:11px; color:var(--text-faint); letter-spacing:0.12em; text-transform:uppercase;}
+  .p-card .name-zh{ font-family:var(--font-zh-display); font-size:32px; font-weight:800; line-height:1.2; margin-top:-2px;}
+  .p-card .body{ font-size:14px; color:var(--text-dim); line-height:1.7;}
+  .p-card .body b{ color:var(--text); font-weight:500;}
+  .p-card .actions{ margin-top:auto; padding-top:18px; border-top:1px solid var(--hair); display:flex; flex-direction:column; gap:10px;}
+  .p-card .actions h5{ font-family:var(--font-mono); font-size:10px; color:var(--text-faint); letter-spacing:0.1em; margin-bottom:4px;}
+  .p-card .actions .row{ display:grid; grid-template-columns: 24px 1fr; gap:10px; font-size:13px; color:var(--text-dim); line-height:1.5;}
+  .p-card .actions .row::before{ content:'→'; color:var(--accent); font-family:var(--font-mono);}
+</style></head>
+<body class="padb-mmall">
+<div class="page haze-warm">
+  <div class="concept-badge">[ 概念 / CONCEPT ]</div>
+  <div class="top-meta"><span>08 / 22 · M-MALL · DESIGN STRATEGY</span><span class="right">汪泽田 · 2026 PORTFOLIO</span></div>
+
+  <div class="header">
+    <div class="h">把改版收到 <em>3 条原则</em>，<br/>每条原则都对应可改的页面动作</div>
+    <div class="meta">
+      DESIGN STRATEGY · 3 PRINCIPLES<br/>
+      EACH PRINCIPLE → CONCRETE ACTIONS<br/>
+      AVOID 「提升用户体验」式空话
+    </div>
+  </div>
+
+  <div class="principles">
+    <div class="p-card">
+      <div class="name-en">PRINCIPLE 01</div>
+      <div class="num">01</div>
+      <div class="name-zh">少而准，<br/>不是多而全</div>
+      <div class="body">
+        首页不再追求"塞满"，每个入口都要能用 <b>3 个月点击数据</b>说明它存在的理由。点击率连续 3 月 &lt; 2% 的入口下沉到二级页。
+      </div>
+      <div class="actions">
+        <h5>对应页面动作</h5>
+        <div class="row">金刚位 8 → <b>5 个</b>，下沉 3 个低效入口</div>
+        <div class="row">每个入口加 <b>季度数据回顾机制</b></div>
+        <div class="row">大促临时入口走<b>独立透明位</b>，不挤金刚位</div>
+      </div>
+    </div>
+
+    <div class="p-card">
+      <div class="name-en">PRINCIPLE 02</div>
+      <div class="num">02</div>
+      <div class="name-zh">详情页是决策页，<br/>不是导流页</div>
+      <div class="body">
+        商品详情页的<b>第 1 屏必须给完决策信息</b>（标题、价、规格关键差异、库存状态）。所有"推荐"模块下沉到第 3 屏后。
+      </div>
+      <div class="actions">
+        <h5>对应页面动作</h5>
+        <div class="row">规格表上提，从 4.2 屏 → <b>1 屏可见</b></div>
+        <div class="row">3 个推荐 banner 合并为 <b>1 个底部抽屉</b></div>
+        <div class="row">"加购物车"按钮全程吸底，不随滚动消失</div>
+      </div>
+    </div>
+
+    <div class="p-card">
+      <div class="name-en">PRINCIPLE 03</div>
+      <div class="num">03</div>
+      <div class="name-zh">完成页是<br/>"确认 + 下一步"</div>
+      <div class="body">
+        支付完成页主轴改为<b>订单确认 50% / 后续动作 30% / 营销 20%</b>。营销弹窗最多 1 个，且不挡核心信息。
+      </div>
+      <div class="actions">
+        <h5>对应页面动作</h5>
+        <div class="row">订单号 + 物流 ETA + 联系入口<b>固定置顶</b></div>
+        <div class="row">"继续购物"和"查看订单"<b>双 CTA</b></div>
+        <div class="row">营销内容<b>限 1 个 banner</b>，且可一键关闭</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom-bar">
+    <span>08 / 22 · STRATEGY</span>
+    <div class="dots"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    <span>WANG ZETIAN · 2026</span>
+  </div>
+</div>
+</body></html>

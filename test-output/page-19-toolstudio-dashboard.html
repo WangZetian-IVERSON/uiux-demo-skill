@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>ToolStudio · 主控台 · Test Showcase</title>
+<style>
+  /* ===== DECK META TOKENS (from PADB-3) ===== */
+  :root{
+    --base: #050a12;
+    --surface: #0c1622;
+    --surface-2: #142235;
+    --hairline: rgba(120,180,230,0.12);
+    --accent: #34d6ff;
+    --cobalt: #2563eb;
+    --text: #f6fbff;
+    --text-dim: #7a93ad;
+    --text-faint: #4a5b70;
+    --warn: #ffb454;
+    --danger: #ff5c5c;
+    --ok: #4ade80;
+    --radius: 14px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0}
+  body{
+    background: radial-gradient(ellipse at top, #0a1828 0%, #050a12 60%);
+    color: var(--text);
+    font-family: 'HarmonyOS Sans SC', 'PingFang SC', 'Helvetica Neue', sans-serif;
+    width: 1920px; height: 1080px;
+    padding: 28px 36px;
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    grid-template-rows: 56px 1fr;
+    gap: 18px;
+    overflow: hidden;
+    position: relative;
+  }
+  /* hex grid background, very faint */
+  body::before{
+    content:''; position:absolute; inset:0;
+    background-image:
+      linear-gradient(rgba(52,214,255,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(52,214,255,0.04) 1px, transparent 1px);
+    background-size: 48px 48px;
+    pointer-events:none; z-index:0;
+  }
+  body > *{ position:relative; z-index:1; }
+
+  /* ===== concept badge (mandatory in VISUAL_PROPOSAL) ===== */
+  .concept-badge{
+    position:absolute; top:20px; right:36px; z-index:10;
+    border:1px solid var(--accent);
+    color:var(--accent);
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px; letter-spacing:0.08em;
+    padding:5px 10px; border-radius:3px;
+    background: rgba(52,214,255,0.04);
+  }
+
+  /* ===== top bar ===== */
+  .topbar{
+    grid-column: 1 / -1;
+    display:flex; align-items:center; gap:24px;
+    padding: 0 24px;
+    background: var(--surface);
+    border:1px solid var(--hairline);
+    border-radius: var(--radius);
+  }
+  .brand{ font-family:'JetBrains Mono', monospace; font-weight:700; letter-spacing:0.06em; font-size:14px; }
+  .brand .dot{ color:var(--accent); }
+  .breadcrumb{ color:var(--text-dim); font-size:13px; }
+  .breadcrumb b{ color:var(--text); font-weight:500; margin-left:6px; }
+  .topbar-right{ margin-left:auto; display:flex; align-items:center; gap:18px; font-size:12px; color:var(--text-dim); }
+  .status-pill{
+    display:inline-flex; align-items:center; gap:6px;
+    padding:4px 10px; border-radius:3px;
+    background: rgba(74,222,128,0.10);
+    color: var(--ok);
+    font-family:'JetBrains Mono', monospace; font-size:11px;
+  }
+  .status-pill::before{ content:''; width:6px; height:6px; border-radius:50%; background: var(--ok); }
+  .avatar{ width:28px; height:28px; border-radius:50%; background: linear-gradient(135deg, #2563eb, #34d6ff); }
+
+  /* ===== left rail ===== */
+  .rail{
+    background: var(--surface);
+    border:1px solid var(--hairline);
+    border-radius: var(--radius);
+    padding: 18px 0;
+    display:flex; flex-direction:column; align-items:center; gap:18px;
+  }
+  .rail-icon{
+    width:44px; height:44px; border-radius:10px;
+    display:flex; align-items:center; justify-content:center;
+    color: var(--text-faint);
+    cursor: pointer;
+    position:relative;
+  }
+  .rail-icon svg{ width:20px; height:20px; }
+  .rail-icon.active{ background: rgba(52,214,255,0.12); color:var(--accent); }
+  .rail-icon.active::before{
+    content:''; position:absolute; left:-18px; top:10px; bottom:10px; width:3px;
+    background: var(--accent); border-radius:0 2px 2px 0;
+  }
+
+  /* ===== main canvas ===== */
+  .main{
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: 110px 1fr 250px;
+    gap: 18px;
+  }
+
+  /* KPI cards */
+  .kpi{
+    background: var(--surface);
+    border:1px solid var(--hairline);
+    border-radius: var(--radius);
+    padding: 18px 22px;
+    grid-row: 1;
+    display:flex; flex-direction:column; justify-content:space-between;
+    position:relative; overflow:hidden;
+  }
+  .kpi:nth-child(1){ grid-column: span 3; }
+  .kpi:nth-child(2){ grid-column: span 3; }
+  .kpi:nth-child(3){ grid-column: span 3; }
+  .kpi:nth-child(4){ grid-column: span 3; }
+  .kpi-label{ color:var(--text-dim); font-size:12px; letter-spacing:0.04em; }
+  .kpi-num{ font-family:'JetBrains Mono', monospace; font-weight:700; font-size:38px; line-height:1; color:var(--text); }
+  .kpi-num .unit{ font-size:14px; color:var(--text-dim); margin-left:6px; font-weight:400; }
+  .kpi-foot{ display:flex; align-items:center; justify-content:space-between; }
+  .delta{ font-family:'JetBrains Mono', monospace; font-size:12px; }
+  .delta.up{ color: var(--ok); }
+  .delta.down{ color: var(--danger); }
+  .spark{ width:80px; height:24px; }
+
+  /* hero map */
+  .panel{
+    background: var(--surface);
+    border:1px solid var(--hairline);
+    border-radius: var(--radius);
+    padding: 18px 22px;
+    display:flex; flex-direction:column; gap:14px;
+    position:relative; overflow:hidden;
+  }
+  .panel-h{
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .panel-h .t{ font-size:14px; font-weight:600; letter-spacing:0.02em; }
+  .panel-h .sub{ font-size:11px; color: var(--text-faint); font-family:'JetBrains Mono', monospace; }
+  .panel-h .tabs{ display:flex; gap:4px; }
+  .panel-h .tab{ font-size:11px; color:var(--text-dim); padding:4px 10px; border-radius:3px; cursor:pointer; }
+  .panel-h .tab.active{ background: rgba(52,214,255,0.10); color: var(--accent); }
+
+  .map-panel{ grid-column: span 7; grid-row: 2; }
+  .map-svg{ flex:1; width:100%; }
+
+  .rank-panel{ grid-column: span 5; grid-row: 2; }
+  .rank-list{ display:flex; flex-direction:column; gap:10px; flex:1; }
+  .rank-row{
+    display:grid; grid-template-columns: 28px 1fr 60px 80px;
+    align-items:center; gap:10px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--hairline);
+    font-size:13px;
+  }
+  .rank-row:last-child{ border-bottom:none; }
+  .rank-num{
+    font-family:'JetBrains Mono', monospace;
+    color: var(--text-faint); font-size:12px;
+  }
+  .rank-row.top .rank-num{ color: var(--accent); font-weight:700; }
+  .rank-name{ color: var(--text); }
+  .rank-name .tag{ display:inline-block; font-size:10px; color:var(--text-faint); margin-left:6px; padding:1px 6px; border:1px solid var(--hairline); border-radius:2px; }
+  .rank-bar{
+    height:4px; background: var(--surface-2); border-radius:2px; overflow:hidden;
+  }
+  .rank-bar i{
+    display:block; height:100%; background: linear-gradient(90deg, var(--cobalt), var(--accent));
+    border-radius:2px;
+  }
+  .rank-val{ font-family:'JetBrains Mono', monospace; font-size:12px; color:var(--text); text-align:right; }
+
+  /* bottom row */
+  .line-panel{ grid-column: span 6; grid-row: 3; }
+  .line-svg{ flex:1; width:100%; }
+
+  .donut-panel{ grid-column: span 3; grid-row: 3; align-items:center; justify-content:center; flex-direction:column; }
+  .donut-wrap{ position:relative; width:140px; height:140px; }
+  .donut-center{
+    position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center;
+  }
+  .donut-center .n{ font-family:'JetBrains Mono', monospace; font-size:28px; font-weight:700; }
+  .donut-center .u{ font-size:11px; color:var(--text-dim); }
+  .donut-legend{ display:flex; flex-direction:column; gap:6px; width:100%; margin-top:10px; }
+  .donut-legend .row{ display:flex; align-items:center; gap:8px; font-size:11px; color:var(--text-dim); }
+  .donut-legend .row .sw{ width:10px; height:10px; border-radius:2px; }
+  .donut-legend .row .v{ margin-left:auto; font-family:'JetBrains Mono', monospace; color:var(--text); }
+
+  .alert-panel{ grid-column: span 3; grid-row: 3; }
+  .alert-list{ display:flex; flex-direction:column; gap:8px; flex:1; overflow:hidden; }
+  .alert-row{
+    display:grid; grid-template-columns: 8px 1fr auto;
+    gap:10px; align-items:start;
+    padding: 8px 4px;
+    border-bottom: 1px solid var(--hairline);
+  }
+  .alert-row:last-child{ border-bottom:none; }
+  .alert-row .lvl{ width:6px; height:6px; border-radius:50%; margin-top:5px; }
+  .alert-row.danger .lvl{ background: var(--danger); }
+  .alert-row.warn .lvl{ background: var(--warn); }
+  .alert-row.ok .lvl{ background: var(--ok); }
+  .alert-row .body{ display:flex; flex-direction:column; gap:2px; }
+  .alert-row .body .t{ font-size:12px; color:var(--text); }
+  .alert-row .body .s{ font-size:10px; color:var(--text-faint); font-family:'JetBrains Mono', monospace; }
+  .alert-row .ago{ font-size:10px; color:var(--text-faint); font-family:'JetBrains Mono', monospace; }
+
+  /* status pills inside table */
+  .pill{
+    display:inline-block; font-size:10px; padding:2px 8px; border-radius:2px;
+    font-family:'JetBrains Mono', monospace;
+  }
+  .pill.ok{ background: rgba(74,222,128,0.10); color: var(--ok); }
+  .pill.warn{ background: rgba(255,180,84,0.10); color: var(--warn); }
+  .pill.danger{ background: rgba(255,92,92,0.10); color: var(--danger); }
+</style>
+</head>
+<body>
+
+<div class="concept-badge">[ 概念 / CONCEPT ]</div>
+
+<!-- top bar -->
+<div class="topbar" style="grid-column:1 / -1; grid-row:1;">
+  <div class="brand">TOOL<span class="dot">·</span>STUDIO</div>
+  <div class="breadcrumb">运营中心 / <b>主控台</b></div>
+  <div class="topbar-right">
+    <span class="status-pill">系统正常 · 99.97%</span>
+    <span style="font-family:'JetBrains Mono',monospace;">2026.04.29  14:32</span>
+    <div class="avatar"></div>
+  </div>
+</div>
+
+<!-- left rail -->
+<div class="rail" style="grid-column:1; grid-row:2;">
+  <div class="rail-icon active" title="主控台">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg>
+  </div>
+  <div class="rail-icon" title="工单"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 5h16v6a3 3 0 0 1-3 3h-1l-3 3v-3H7a3 3 0 0 1-3-3V5z"/></svg></div>
+  <div class="rail-icon" title="订单"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 7h14l-1.5 11a2 2 0 0 1-2 1.8h-7a2 2 0 0 1-2-1.8L5 7z"/><path d="M9 7V5a3 3 0 0 1 6 0v2"/></svg></div>
+  <div class="rail-icon" title="客户"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="3.5"/><path d="M5 20a7 7 0 0 1 14 0"/></svg></div>
+  <div class="rail-icon" title="数据"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 19V9M10 19V5M16 19v-7M22 19H2"/></svg></div>
+  <div class="rail-icon" title="设置" style="margin-top:auto;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1A1.7 1.7 0 0 0 9 19.4a1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1A1.7 1.7 0 0 0 4.6 9a1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1A1.7 1.7 0 0 0 15 4.6a1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></div>
+</div>
+
+<!-- main grid -->
+<div class="main" style="grid-column:2; grid-row:2;">
+
+  <!-- KPI row -->
+  <div class="kpi">
+    <div class="kpi-label">今日工单总数</div>
+    <div class="kpi-num">1,847<span class="unit">单</span></div>
+    <div class="kpi-foot">
+      <span class="delta up">▲ 12.4%  vs 昨日</span>
+      <svg class="spark" viewBox="0 0 80 24" preserveAspectRatio="none">
+        <polyline fill="none" stroke="#34d6ff" stroke-width="1.5" points="0,18 10,15 20,16 30,12 40,13 50,9 60,10 70,7 80,5"/>
+        <circle cx="80" cy="5" r="2.5" fill="#34d6ff"/>
+      </svg>
+    </div>
+  </div>
+
+  <div class="kpi">
+    <div class="kpi-label">平均处理时长</div>
+    <div class="kpi-num">42<span class="unit">分钟</span></div>
+    <div class="kpi-foot">
+      <span class="delta up">▼ 8 分钟  vs 上周</span>
+      <svg class="spark" viewBox="0 0 80 24" preserveAspectRatio="none">
+        <polyline fill="none" stroke="#34d6ff" stroke-width="1.5" points="0,8 10,10 20,11 30,13 40,12 50,15 60,16 70,18 80,20"/>
+        <circle cx="80" cy="20" r="2.5" fill="#34d6ff"/>
+      </svg>
+    </div>
+  </div>
+
+  <div class="kpi">
+    <div class="kpi-label">SLA 达成率</div>
+    <div class="kpi-num">94.2<span class="unit">%</span></div>
+    <div class="kpi-foot">
+      <span class="delta up">▲ 1.8 pt  vs 上月</span>
+      <svg class="spark" viewBox="0 0 80 24" preserveAspectRatio="none">
+        <polyline fill="none" stroke="#34d6ff" stroke-width="1.5" points="0,14 10,13 20,12 30,12 40,11 50,10 60,9 70,8 80,7"/>
+        <circle cx="80" cy="7" r="2.5" fill="#34d6ff"/>
+      </svg>
+    </div>
+  </div>
+
+  <div class="kpi">
+    <div class="kpi-label">待处理工单</div>
+    <div class="kpi-num">126<span class="unit">单</span></div>
+    <div class="kpi-foot">
+      <span class="delta down">▲ 18 单  超出阈值</span>
+      <svg class="spark" viewBox="0 0 80 24" preserveAspectRatio="none">
+        <polyline fill="none" stroke="#ffb454" stroke-width="1.5" points="0,18 10,17 20,15 30,16 40,14 50,12 60,10 70,8 80,5"/>
+        <circle cx="80" cy="5" r="2.5" fill="#ffb454"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- hero map panel -->
+  <div class="panel map-panel">
+    <div class="panel-h">
+      <div>
+        <div class="t">全国服务网络分布</div>
+        <div class="sub">REGIONAL · 24 cities · live</div>
+      </div>
+      <div class="tabs">
+        <span class="tab active">实时</span>
+        <span class="tab">今日</span>
+        <span class="tab">本周</span>
+      </div>
+    </div>
+    <svg class="map-svg" viewBox="0 0 760 380" preserveAspectRatio="xMidYMid meet">
+      <!-- simplified china outline (very rough placeholder shape, designed to LOOK like a map outline) -->
+      <defs>
+        <radialGradient id="pulse" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#34d6ff" stop-opacity="0.6"/>
+          <stop offset="100%" stop-color="#34d6ff" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+      <!-- map silhouette -->
+      <path d="M120,280 L150,200 L200,180 L240,150 L300,140 L360,130 L420,120 L480,130 L540,150 L600,170 L640,210 L660,260 L640,310 L600,340 L540,350 L480,355 L420,350 L360,345 L300,340 L240,330 L180,320 L140,310 Z"
+            fill="#0a1828" stroke="#34d6ff" stroke-width="1" opacity="0.5"/>
+      <!-- grid hexagons hint -->
+      <g stroke="#34d6ff" stroke-width="0.5" opacity="0.08" fill="none">
+        <path d="M150,200 L180,210 L180,240 L150,250 L120,240 L120,210 Z"/>
+        <path d="M450,200 L480,210 L480,240 L450,250 L420,240 L420,210 Z"/>
+        <path d="M550,250 L580,260 L580,290 L550,300 L520,290 L520,260 Z"/>
+      </g>
+      <!-- connection arcs -->
+      <path d="M 250,250 Q 380,80 540,220" stroke="#34d6ff" stroke-width="1" fill="none" opacity="0.3"/>
+      <path d="M 250,250 Q 200,150 420,180" stroke="#34d6ff" stroke-width="1" fill="none" opacity="0.3"/>
+      <path d="M 540,220 Q 600,290 480,320" stroke="#ffb454" stroke-width="1" fill="none" opacity="0.4"/>
+      <!-- city dots -->
+      <g>
+        <!-- normal ok -->
+        <circle cx="180" cy="240" r="4" fill="#4ade80"/><text x="186" y="244" fill="#7a93ad" font-size="10" font-family="JetBrains Mono">成都</text>
+        <circle cx="250" cy="250" r="6" fill="#34d6ff"/><circle cx="250" cy="250" r="14" fill="url(#pulse)"/><text x="258" y="254" fill="#f6fbff" font-size="11" font-family="JetBrains Mono">武汉 · 412</text>
+        <circle cx="380" cy="180" r="5" fill="#34d6ff"/><text x="386" y="184" fill="#7a93ad" font-size="10" font-family="JetBrains Mono">郑州</text>
+        <circle cx="420" cy="180" r="6" fill="#34d6ff"/><circle cx="420" cy="180" r="14" fill="url(#pulse)"/><text x="428" y="184" fill="#f6fbff" font-size="11" font-family="JetBrains Mono">北京 · 386</text>
+        <circle cx="540" cy="220" r="6" fill="#ffb454"/><circle cx="540" cy="220" r="14" fill="url(#pulse)" opacity="0.6"/><text x="548" y="224" fill="#ffb454" font-size="11" font-family="JetBrains Mono">上海 · 305 · 预警</text>
+        <circle cx="480" cy="320" r="4" fill="#4ade80"/><text x="486" y="324" fill="#7a93ad" font-size="10" font-family="JetBrains Mono">广州</text>
+        <circle cx="320" cy="290" r="3" fill="#4ade80"/>
+        <circle cx="280" cy="200" r="3" fill="#4ade80"/>
+        <circle cx="500" cy="170" r="3" fill="#4ade80"/>
+        <circle cx="440" cy="280" r="3" fill="#4ade80"/>
+        <circle cx="600" cy="260" r="3" fill="#4ade80"/>
+        <circle cx="380" cy="320" r="3" fill="#4ade80"/>
+        <circle cx="200" cy="220" r="3" fill="#4ade80"/>
+      </g>
+    </svg>
+  </div>
+
+  <!-- rank panel -->
+  <div class="panel rank-panel">
+    <div class="panel-h">
+      <div>
+        <div class="t">活跃门店 · 工单贡献排行</div>
+        <div class="sub">TOP STORES · TODAY</div>
+      </div>
+      <div class="tabs"><span class="tab active">今日</span><span class="tab">本周</span></div>
+    </div>
+    <div class="rank-list">
+      <div class="rank-row top"><div class="rank-num">01</div><div class="rank-name">北京 · 朝阳店<span class="tag">旗舰</span></div><div class="rank-bar"><i style="width:92%"></i></div><div class="rank-val">386</div></div>
+      <div class="rank-row top"><div class="rank-num">02</div><div class="rank-name">上海 · 静安店<span class="tag">旗舰</span></div><div class="rank-bar"><i style="width:73%"></i></div><div class="rank-val">305</div></div>
+      <div class="rank-row"><div class="rank-num">03</div><div class="rank-name">武汉 · 江汉店</div><div class="rank-bar"><i style="width:65%"></i></div><div class="rank-val">272</div></div>
+      <div class="rank-row"><div class="rank-num">04</div><div class="rank-name">深圳 · 南山店</div><div class="rank-bar"><i style="width:54%"></i></div><div class="rank-val">228</div></div>
+      <div class="rank-row"><div class="rank-num">05</div><div class="rank-name">杭州 · 西湖店</div><div class="rank-bar"><i style="width:48%"></i></div><div class="rank-val">201</div></div>
+      <div class="rank-row"><div class="rank-num">06</div><div class="rank-name">成都 · 锦江店</div><div class="rank-bar"><i style="width:41%"></i></div><div class="rank-val">172</div></div>
+      <div class="rank-row"><div class="rank-num">07</div><div class="rank-name">南京 · 鼓楼店</div><div class="rank-bar"><i style="width:35%"></i></div><div class="rank-val">148</div></div>
+    </div>
+  </div>
+
+  <!-- line chart -->
+  <div class="panel line-panel">
+    <div class="panel-h">
+      <div>
+        <div class="t">工单处理时长趋势</div>
+        <div class="sub">7-DAY MOVING · 单位 分钟</div>
+      </div>
+      <div style="display:flex;gap:14px;font-size:11px;color:var(--text-dim);font-family:'JetBrains Mono',monospace;">
+        <span><i style="display:inline-block;width:10px;height:2px;background:#34d6ff;vertical-align:middle;margin-right:4px;"></i>本周</span>
+        <span><i style="display:inline-block;width:10px;height:2px;background:#7a93ad;vertical-align:middle;margin-right:4px;opacity:0.5;"></i>上周</span>
+      </div>
+    </div>
+    <svg class="line-svg" viewBox="0 0 600 160" preserveAspectRatio="none">
+      <!-- grid -->
+      <g stroke="#142235" stroke-width="1">
+        <line x1="40" y1="20" x2="600" y2="20"/>
+        <line x1="40" y1="60" x2="600" y2="60"/>
+        <line x1="40" y1="100" x2="600" y2="100"/>
+        <line x1="40" y1="140" x2="600" y2="140"/>
+      </g>
+      <!-- y labels -->
+      <g fill="#4a5b70" font-size="10" font-family="JetBrains Mono">
+        <text x="0" y="24">60</text>
+        <text x="0" y="64">50</text>
+        <text x="0" y="104">40</text>
+        <text x="0" y="144">30</text>
+      </g>
+      <!-- last week (dim) -->
+      <polyline fill="none" stroke="#7a93ad" stroke-width="1.2" opacity="0.45" stroke-dasharray="3,3"
+        points="60,55 140,60 220,52 300,68 380,72 460,65 540,78"/>
+      <!-- this week (accent) -->
+      <polyline fill="none" stroke="#34d6ff" stroke-width="1.8"
+        points="60,75 140,80 220,72 300,90 380,98 460,108 540,118"/>
+      <!-- area fill -->
+      <polyline fill="rgba(52,214,255,0.08)" stroke="none"
+        points="60,75 140,80 220,72 300,90 380,98 460,108 540,118 540,150 60,150"/>
+      <!-- last point dot -->
+      <circle cx="540" cy="118" r="4" fill="#34d6ff"/>
+      <text x="552" y="121" fill="#34d6ff" font-size="11" font-family="JetBrains Mono">42 min</text>
+      <!-- x labels -->
+      <g fill="#4a5b70" font-size="10" font-family="JetBrains Mono">
+        <text x="55" y="158">周一</text><text x="135" y="158">周二</text><text x="215" y="158">周三</text>
+        <text x="295" y="158">周四</text><text x="375" y="158">周五</text><text x="455" y="158">周六</text><text x="535" y="158">周日</text>
+      </g>
+    </svg>
+  </div>
+
+  <!-- donut -->
+  <div class="panel donut-panel">
+    <div class="panel-h" style="width:100%;">
+      <div>
+        <div class="t">工单类型构成</div>
+        <div class="sub">CATEGORY MIX · TODAY</div>
+      </div>
+    </div>
+    <div class="donut-wrap">
+      <svg viewBox="0 0 42 42" style="width:100%;height:100%;transform:rotate(-90deg);">
+        <circle cx="21" cy="21" r="15.9" fill="none" stroke="#142235" stroke-width="6"/>
+        <!-- 56% 报修 -->
+        <circle cx="21" cy="21" r="15.9" fill="none" stroke="#34d6ff" stroke-width="6"
+          stroke-dasharray="56 100" stroke-dashoffset="0"/>
+        <!-- 28% 安装 -->
+        <circle cx="21" cy="21" r="15.9" fill="none" stroke="#2563eb" stroke-width="6"
+          stroke-dasharray="28 100" stroke-dashoffset="-56"/>
+        <!-- 16% 咨询 -->
+        <circle cx="21" cy="21" r="15.9" fill="none" stroke="#ffb454" stroke-width="6"
+          stroke-dasharray="16 100" stroke-dashoffset="-84"/>
+      </svg>
+      <div class="donut-center">
+        <div class="n">1,847</div>
+        <div class="u">单</div>
+      </div>
+    </div>
+    <div class="donut-legend">
+      <div class="row"><span class="sw" style="background:#34d6ff;"></span>报修类<span class="v">56%</span></div>
+      <div class="row"><span class="sw" style="background:#2563eb;"></span>安装类<span class="v">28%</span></div>
+      <div class="row"><span class="sw" style="background:#ffb454;"></span>咨询类<span class="v">16%</span></div>
+    </div>
+  </div>
+
+  <!-- alerts -->
+  <div class="panel alert-panel">
+    <div class="panel-h">
+      <div>
+        <div class="t">实时预警</div>
+        <div class="sub">LIVE ALERTS · 6</div>
+      </div>
+      <span class="pill danger">2 严重</span>
+    </div>
+    <div class="alert-list">
+      <div class="alert-row danger">
+        <div class="lvl"></div>
+        <div class="body">
+          <div class="t">上海静安店 · SLA 即将超时</div>
+          <div class="s">WO-2026042901872 · 剩 12 min</div>
+        </div>
+        <div class="ago">2m</div>
+      </div>
+      <div class="alert-row danger">
+        <div class="lvl"></div>
+        <div class="body">
+          <div class="t">深圳南山店 · 待派单堆积</div>
+          <div class="s">PENDING-BACKLOG · 38 单</div>
+        </div>
+        <div class="ago">8m</div>
+      </div>
+      <div class="alert-row warn">
+        <div class="lvl"></div>
+        <div class="body">
+          <div class="t">北京朝阳店 · 高峰期人力预警</div>
+          <div class="s">CAPACITY · 87% 占用</div>
+        </div>
+        <div class="ago">14m</div>
+      </div>
+      <div class="alert-row warn">
+        <div class="lvl"></div>
+        <div class="body">
+          <div class="t">武汉江汉店 · 客诉 +3</div>
+          <div class="s">COMPLAINT · 1 小时内</div>
+        </div>
+        <div class="ago">22m</div>
+      </div>
+      <div class="alert-row ok">
+        <div class="lvl"></div>
+        <div class="body">
+          <div class="t">杭州西湖店 · 今日满意度回升</div>
+          <div class="s">CSAT · 4.7 → 4.9</div>
+        </div>
+        <div class="ago">1h</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

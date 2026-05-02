@@ -1,0 +1,97 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><title>15 · Hometaste Dual Role</title>
+<link rel="stylesheet" href="_deck.css">
+<style>
+  .header{ display:flex; justify-content:space-between; align-items:flex-end; margin-top:24px; gap:48px;}
+  .header .h{ font-family:var(--font-zh-display); font-weight:900; font-size:50px; line-height:1.1; color:var(--text);}
+  .header .h em{ color:var(--accent); font-style:normal;}
+  .header .meta{ font-family:var(--font-mono); font-size:11px; color:#9a8c7d; letter-spacing:0.1em; text-align:right; line-height:1.7; min-width:280px;}
+  .matrix{ margin-top:36px; display:grid; grid-template-columns: 200px 1fr 1fr; height:780px; gap:0;}
+  .matrix .axis{ display:flex; flex-direction:column;}
+  .matrix .axis .head{ height:80px; display:flex; align-items:center; padding:0 24px; border-bottom:1px solid var(--hair);}
+  .matrix .axis .head h3{ font-family:var(--font-mono); font-size:11px; color:#9a8c7d; letter-spacing:0.1em;}
+  .matrix .axis .row{ flex:1; display:flex; align-items:center; padding:18px 24px; border-bottom:1px solid var(--hair); font-family:var(--font-mono); font-size:11px; color:#9a8c7d; letter-spacing:0.08em; text-transform:uppercase;}
+  .matrix .axis .row:last-child{ border-bottom:none;}
+  .matrix .col{ display:flex; flex-direction:column; background:var(--surface); border-left:1px solid var(--hair); border-radius:0;}
+  .matrix .col:last-child{ border-radius: 0 14px 14px 0;}
+  .matrix .col:first-of-type{ border-radius: 14px 0 0 14px;}
+  .matrix .col .head{
+    height:80px; display:flex; align-items:center; padding:0 28px; gap:18px;
+    border-bottom:1px solid var(--hair);
+  }
+  .matrix .col .head .avatar{
+    width:48px; height:48px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-family:var(--font-zh-display); font-size:22px; font-weight:800; color:#fff;
+  }
+  .matrix .col.user .avatar{ background:#c14b2a;}
+  .matrix .col.leader .avatar{ background:#6b8e5a;}
+  .matrix .col .head .name{ font-family:var(--font-zh-display); font-size:24px; font-weight:800; color:var(--text);}
+  .matrix .col .head .name small{ display:block; font-family:var(--font-mono); font-size:10px; color:#9a8c7d; font-weight:400; letter-spacing:0.05em; margin-top:2px;}
+  .matrix .col .row{ flex:1; padding:18px 28px; border-bottom:1px solid var(--hair); font-size:14px; color:#3d3326; line-height:1.6;}
+  .matrix .col .row:last-child{ border-bottom:none;}
+  .matrix .col .row b{ color:var(--text); font-weight:600;}
+  .matrix .col .row .tag{ display:inline-block; font-family:var(--font-mono); font-size:10px; padding:2px 8px; border-radius:2px; letter-spacing:0.05em; margin-right:6px;}
+  .matrix .col.user .tag{ background:rgba(193,75,42,0.12); color:#c14b2a;}
+  .matrix .col.leader .tag{ background:rgba(107,142,90,0.18); color:#5a7849;}
+  .top-meta{ color:#9a8c7d;} .top-meta .right{ color:#7a6d60;}
+  .bottom-bar{ color:#9a8c7d;}
+  .concept-badge{ background:rgba(193,75,42,0.06);}
+</style></head>
+<body class="padb-hometaste">
+<div class="page haze-paper">
+  <div class="concept-badge">[ 概念研究 / CONCEPT RESEARCH ]</div>
+  <div class="top-meta"><span>15 / 22 · HOMETASTE · DUAL ROLE</span><span class="right">汪泽田 · 2026 PORTFOLIO</span></div>
+
+  <div class="header">
+    <div class="h">把"用户"展开成<em>两个完全不同的人</em>，再回头看组件</div>
+    <div class="meta">
+      DUAL ROLE COMPARISON<br/>
+      6 DIMENSIONS · 同一组件库 · 两套密度
+    </div>
+  </div>
+
+  <div class="matrix">
+    <div class="axis">
+      <div class="head"><h3>VS. 比较维度</h3></div>
+      <div class="row">使用频率</div>
+      <div class="row">单次时长</div>
+      <div class="row">环境与光线</div>
+      <div class="row">最痛的事</div>
+      <div class="row">设计要给的</div>
+      <div class="row">组件密度</div>
+    </div>
+
+    <div class="col user">
+      <div class="head">
+        <div class="avatar">买</div>
+        <div class="name">买菜的妈妈<small>USER · CONSUMER</small></div>
+      </div>
+      <div class="row"><span class="tag">3 ×/周</span>下班路上 17:30-19:00</div>
+      <div class="row"><span class="tag">~ 4 分钟</span>3-5 个 SKU 单次决策</div>
+      <div class="row">通勤 / 厨房 / 床头 · <b>移动 + 分心</b></div>
+      <div class="row">看不出菜<b>新不新鲜</b>，到货前的不安全感</div>
+      <div class="row">真实图、产地、当日采摘日期、信任标</div>
+      <div class="row"><b>低密度</b> · 一屏 1 SKU · 大图 · 大字</div>
+    </div>
+
+    <div class="col leader">
+      <div class="head">
+        <div class="avatar">团</div>
+        <div class="name">兼职团长<small>LEADER · OPERATOR</small></div>
+      </div>
+      <div class="row"><span class="tag">12 ×/天</span>7:00 / 12:00 / 19:00 三波</div>
+      <div class="row"><span class="tag">~ 30 秒</span>逐单核对、贴码、推送</div>
+      <div class="row">便利店收银台 · <b>固定 + 多任务</b></div>
+      <div class="row"><b>错单回退路径长</b>：取消一单要点 5 步</div>
+      <div class="row">键盘式速选、批量操作、错单一键回</div>
+      <div class="row"><b>高密度</b> · 一屏 12 单 · 状态色块 · 数字主导</div>
+    </div>
+  </div>
+
+  <div class="bottom-bar">
+    <span>15 / 22 · DUAL ROLE</span>
+    <div class="dots"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    <span>WANG ZETIAN · 2026</span>
+  </div>
+</div>
+</body></html>

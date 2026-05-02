@@ -5,7 +5,7 @@
 ## How To Use
 
 1. Copy the contents of this folder into your project's deck folder, e.g. `decks/<project-slug>/`.
-2. Adjust the relative path to `vendor/huashu-design/assets/deck_stage.js` in `deck-skeleton.html` so it resolves from your deck folder.
+2. Adjust the relative path to `vendor/design-assets/assets/deck_stage.js` in `deck-skeleton.html` so it resolves from your deck folder.
 3. Generate background images with gpt-image-2 / Nano Banana Pro per the PADB and Layer Map. Save them under `decks/<project-slug>/generated-images/` with predictable names (`01-cover.png`, `02-contents.png`, etc.).
 4. Edit each `<section>` in `deck-skeleton.html`:
    - Update `src` of `<img class="bg">` to the matching generated image.

@@ -1,0 +1,221 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><title>17 · Hometaste Leader Dashboard</title>
+<link rel="stylesheet" href="_deck.css">
+<style>
+  .header{ display:flex; justify-content:space-between; align-items:flex-end; margin-top:24px; gap:48px;}
+  .header .h{ font-family:var(--font-zh-display); font-weight:900; font-size:46px; line-height:1.1; color:var(--text);}
+  .header .h em{ color:var(--accent); font-style:normal;}
+  .header .meta{ font-family:var(--font-mono); font-size:11px; color:#9a8c7d; letter-spacing:0.1em; text-align:right; line-height:1.7; min-width:280px;}
+
+  .dash-shell{
+    margin-top:24px; background:var(--surface); border:1px solid var(--hair); border-radius:18px;
+    padding:0; height:820px; display:grid; grid-template-rows: 56px 1fr; overflow:hidden;
+  }
+  .topbar{
+    display:flex; align-items:center; padding:0 24px; border-bottom:1px solid var(--hair);
+    gap:16px; background: var(--surface-2);
+  }
+  .topbar .logo{ font-family:var(--font-zh-display); font-size:18px; font-weight:800; color:var(--text);}
+  .topbar .logo span{ color:var(--accent);}
+  .topbar .crumb{ font-family:var(--font-mono); font-size:11px; color:#9a8c7d; letter-spacing:0.05em;}
+  .topbar .right{ margin-left:auto; display:flex; align-items:center; gap:14px; font-family:var(--font-mono); font-size:11px; color:#5a4d40;}
+  .topbar .right .pill{ display:inline-flex; align-items:center; gap:6px; padding:5px 10px; background:rgba(107,142,90,0.15); color:#5a7849; border-radius:10px;}
+  .topbar .right .pill::before{ content:''; width:6px; height:6px; background:#6b8e5a; border-radius:50%;}
+
+  .body-grid{
+    display:grid; grid-template-columns: 1fr 1fr 1fr; grid-template-rows: auto 1fr;
+    gap:18px; padding:24px;
+  }
+  /* KPI row */
+  .kpi-row{ grid-column: 1 / 4; display:grid; grid-template-columns: repeat(4, 1fr); gap:16px;}
+  .kpi-c{ background:var(--surface); border:1px solid var(--hair); border-radius:12px; padding:18px 22px; display:flex; flex-direction:column; gap:6px;}
+  .kpi-c .label{ font-family:var(--font-mono); font-size:10px; color:#9a8c7d; letter-spacing:0.08em;}
+  .kpi-c .num{ font-family:var(--font-mono); font-size:36px; font-weight:700; color:var(--text); line-height:1;}
+  .kpi-c .sub{ font-size:11px; color:#7a6d60;}
+  .kpi-c .sub b{ color:var(--accent);}
+  .kpi-c.acc{ border-color: rgba(193,75,42,0.25);}
+  .kpi-c.acc .num{ color:var(--accent);}
+  .kpi-c.green{ border-color: rgba(107,142,90,0.25);}
+  .kpi-c.green .num{ color:#5a7849;}
+
+  /* Today's order list */
+  .today{
+    grid-column: 1 / 3; background:var(--surface); border:1px solid var(--hair); border-radius:12px;
+    padding:20px 22px; display:flex; flex-direction:column; gap:12px;
+  }
+  .today h4{ font-family:var(--font-mono); font-size:11px; color:#9a8c7d; letter-spacing:0.1em; text-transform:uppercase;}
+  .today h4 b{ color:var(--text); margin-left:8px; font-family:var(--font-zh-display); letter-spacing:0; text-transform:none;}
+  .order-table{ display:grid; grid-template-columns: 60px 1fr 80px 90px 90px 80px; gap:0; font-size:13px; color:#5a4d40; border-radius:6px; overflow:hidden;}
+  .order-table .th{ background:var(--surface-2); padding:8px 10px; font-family:var(--font-mono); font-size:10px; color:#9a8c7d; letter-spacing:0.05em; text-transform:uppercase;}
+  .order-table .td{ padding:9px 10px; border-bottom:1px solid var(--hair);}
+  .order-table .td.code{ font-family:var(--font-mono); color:var(--text); font-weight:700;}
+  .order-table .td.amt{ font-family:var(--font-mono); color:var(--text);}
+  .order-table .td .stat{ display:inline-block; font-family:var(--font-mono); font-size:10px; padding:2px 7px; border-radius:2px; letter-spacing:0.05em;}
+  .order-table .td .stat.paid{ background:rgba(107,142,90,0.18); color:#5a7849;}
+  .order-table .td .stat.wait{ background:rgba(244,201,127,0.25); color:#a8780b;}
+  .order-table .td .stat.err{ background:rgba(193,75,42,0.15); color:#c14b2a;}
+
+  /* Right panel: SKU shortage */
+  .shortage{
+    grid-column: 3 / 4; background:var(--surface); border:1px solid var(--hair); border-radius:12px;
+    padding:20px 22px; display:flex; flex-direction:column; gap:12px;
+  }
+  .shortage h4{ font-family:var(--font-mono); font-size:11px; color:#9a8c7d; letter-spacing:0.1em; text-transform:uppercase;}
+  .shortage h4 b{ color:var(--text); margin-left:8px; font-family:var(--font-zh-display); letter-spacing:0; text-transform:none;}
+  .sku-list{ display:flex; flex-direction:column; gap:10px;}
+  .sku-row{
+    display:grid; grid-template-columns: 1fr 60px 70px; gap:8px; align-items:center;
+    padding:10px 0; border-bottom:1px solid var(--hair); font-size:13px; color:#5a4d40;
+  }
+  .sku-row:last-child{ border-bottom:none;}
+  .sku-row b{ color:var(--text); font-weight:500;}
+  .sku-row .qty{ font-family:var(--font-mono); color:var(--text); text-align:right;}
+  .sku-row .gap{ font-family:var(--font-mono); font-size:11px; padding:3px 7px; border-radius:2px; text-align:center;}
+  .sku-row .gap.warn{ background:rgba(244,201,127,0.25); color:#a8780b;}
+  .sku-row .gap.crit{ background:rgba(193,75,42,0.15); color:#c14b2a;}
+  .sku-row .gap.ok{ background:rgba(107,142,90,0.18); color:#5a7849;}
+
+  /* hour bar chart */
+  .hourly{
+    grid-column: 1 / 3; background:var(--surface); border:1px solid var(--hair); border-radius:12px;
+    padding:20px 22px; display:flex; flex-direction:column; gap:14px;
+  }
+  .hourly h4{ font-family:var(--font-mono); font-size:11px; color:#9a8c7d; letter-spacing:0.1em; text-transform:uppercase;}
+  .hourly h4 b{ color:var(--text); margin-left:8px; font-family:var(--font-zh-display); letter-spacing:0; text-transform:none;}
+  .bars{ display:flex; align-items:flex-end; gap:8px; height:140px; padding-top:8px; border-bottom:1px solid var(--hair);}
+  .bar{ flex:1; display:flex; flex-direction:column; align-items:center; gap:4px; height:100%;}
+  .bar i{ width:100%; background: linear-gradient(180deg, var(--accent), #d96e3f); border-radius:3px 3px 0 0; min-height:4px;}
+  .bar i.peak{ background: linear-gradient(180deg, #6b8e5a, #88b076);}
+  .bar small{ font-family:var(--font-mono); font-size:10px; color:#9a8c7d;}
+  .hourly .legend{ display:flex; gap:20px; font-family:var(--font-mono); font-size:10px; color:#9a8c7d;}
+  .hourly .legend i{ display:inline-block; width:12px; height:8px; vertical-align:middle; margin-right:4px; border-radius:2px;}
+
+  /* alerts panel */
+  .alerts{
+    grid-column: 3 / 4; background:var(--surface); border:1px solid var(--hair); border-radius:12px;
+    padding:20px 22px; display:flex; flex-direction:column; gap:10px;
+  }
+  .alerts h4{ font-family:var(--font-mono); font-size:11px; color:#9a8c7d; letter-spacing:0.1em; text-transform:uppercase;}
+  .alerts h4 b{ color:var(--text); margin-left:8px; font-family:var(--font-zh-display); letter-spacing:0; text-transform:none;}
+  .alert-row{ display:grid; grid-template-columns: 8px 1fr 60px; gap:10px; padding:10px 0; border-bottom:1px solid var(--hair); font-size:12px; color:#5a4d40; line-height:1.55; align-items:start;}
+  .alert-row:last-child{ border-bottom:none;}
+  .alert-row .dot{ width:8px; height:8px; border-radius:50%; margin-top:5px;}
+  .alert-row .dot.r{ background:#c14b2a;} .alert-row .dot.y{ background:#a8780b;} .alert-row .dot.g{ background:#6b8e5a;}
+  .alert-row .time{ font-family:var(--font-mono); font-size:10px; color:#9a8c7d; text-align:right;}
+  .alert-row b{ color:var(--text);}
+
+  .top-meta{ color:#9a8c7d;} .top-meta .right{ color:#7a6d60;}
+  .bottom-bar{ color:#9a8c7d;}
+  .concept-badge{ background:rgba(193,75,42,0.06);}
+</style></head>
+<body class="padb-hometaste">
+<div class="page haze-paper">
+  <div class="concept-badge">[ 概念数据 / CONCEPT DATA ]</div>
+  <div class="top-meta"><span>17 / 22 · HOMETASTE · LEADER DASHBOARD</span><span class="right">汪泽田 · 2026 PORTFOLIO</span></div>
+
+  <div class="header">
+    <div class="h">团长后台主面板：<em>30 秒看完一天的状态</em></div>
+    <div class="meta">
+      LEADER CONSOLE · DESKTOP & MOBILE WEB<br/>
+      DATA SHOWN = CONCEPT SAMPLE
+    </div>
+  </div>
+
+  <div class="dash-shell">
+    <div class="topbar">
+      <div class="logo">家味<span> · 团长后台</span></div>
+      <div class="crumb">/ 张哥的店 · 上海 · 静安 / 今日工作台</div>
+      <div class="right">
+        <span class="pill">在线 · 自动同步</span>
+        <span>2026-04-29 · 周三</span>
+        <span style="color:var(--text); font-weight:600;">张哥</span>
+      </div>
+    </div>
+
+    <div class="body-grid">
+
+      <div class="kpi-row">
+        <div class="kpi-c"><div class="label">今日已开 / 总单</div><div class="num">23<span style="font-size:18px;color:#9a8c7d;"> / 35</span></div><div class="sub">完成进度 <b>66%</b></div></div>
+        <div class="kpi-c green"><div class="label">已交付</div><div class="num">12</div><div class="sub">距日清还有 <b>23 单</b></div></div>
+        <div class="kpi-c acc"><div class="label">异常 / 需处理</div><div class="num">2</div><div class="sub"><b>缺件 1 · 错件 1</b></div></div>
+        <div class="kpi-c"><div class="label">本周累计</div><div class="num">147<span style="font-size:18px;color:#9a8c7d;"> 单</span></div><div class="sub">同比上周 <b>+12 单</b></div></div>
+      </div>
+
+      <div class="today">
+        <h4>TODAY · <b>今日订单 · 实时</b></h4>
+        <div class="order-table">
+          <div class="th">自取码</div><div class="th">用户</div><div class="th">件数</div><div class="th">金额</div><div class="th">状态</div><div class="th">操作</div>
+
+          <div class="td code">A028</div><div class="td">李 *姐 · 138****2014</div><div class="td">5 件</div><div class="td amt">¥ 38</div><div class="td"><span class="stat paid">已交付</span></div><div class="td" style="color:#9a8c7d; font-size:11px;">完成</div>
+
+          <div class="td code">A029</div><div class="td">王 *师傅 · 138****6628</div><div class="td">2 件</div><div class="td amt">¥ 16</div><div class="td"><span class="stat err">缺件</span></div><div class="td" style="color:var(--accent); font-weight:600;">回退</div>
+
+          <div class="td code">A030</div><div class="td">陈 * · 159****0411</div><div class="td">3 件</div><div class="td amt">¥ 22</div><div class="td"><span class="stat wait">待自取</span></div><div class="td" style="color:#9a8c7d; font-size:11px;">提醒</div>
+
+          <div class="td code">A031</div><div class="td">沈阿姨 · 137****8190</div><div class="td">7 件</div><div class="td amt">¥ 65</div><div class="td"><span class="stat wait">待自取</span></div><div class="td" style="color:#9a8c7d; font-size:11px;">提醒</div>
+
+          <div class="td code">A032</div><div class="td">刘 *姐 · 186****3344</div><div class="td">1 件</div><div class="td amt">¥ 8</div><div class="td"><span class="stat paid">已交付</span></div><div class="td" style="color:#9a8c7d; font-size:11px;">完成</div>
+
+          <div class="td code">A033</div><div class="td">赵 *师傅 · 139****1187</div><div class="td">4 件</div><div class="td amt">¥ 28</div><div class="td"><span class="stat wait">待自取</span></div><div class="td" style="color:#9a8c7d; font-size:11px;">提醒</div>
+
+          <div class="td code">A034</div><div class="td">周 * · 138****5520</div><div class="td">2 件</div><div class="td amt">¥ 14</div><div class="td"><span class="stat err">已取消</span></div><div class="td" style="color:#9a8c7d; font-size:11px;">已退</div>
+        </div>
+      </div>
+
+      <div class="shortage">
+        <h4>SKU · <b>今日 SKU 缺货</b></h4>
+        <div class="sku-list">
+          <div class="sku-row"><span><b>本地番茄</b> · 当日采</span><span class="qty">12 / 18</span><span class="gap warn">差 6</span></div>
+          <div class="sku-row"><span><b>现磨豆腐</b> · 早 5 点</span><span class="qty">23 / 23</span><span class="gap ok">齐</span></div>
+          <div class="sku-row"><span><b>有机鸡蛋</b> · 12 枚</span><span class="qty">5 / 14</span><span class="gap crit">差 9</span></div>
+          <div class="sku-row"><span><b>富士苹果</b> · 5 斤装</span><span class="qty">11 / 11</span><span class="gap ok">齐</span></div>
+          <div class="sku-row"><span><b>本地小白菜</b></span><span class="qty">8 / 9</span><span class="gap warn">差 1</span></div>
+          <div class="sku-row"><span><b>河蟹</b> · 4 两</span><span class="qty">3 / 6</span><span class="gap crit">差 3</span></div>
+          <div class="sku-row"><span><b>巴掌豆腐皮</b></span><span class="qty">15 / 15</span><span class="gap ok">齐</span></div>
+        </div>
+      </div>
+
+      <div class="hourly">
+        <h4>HOURLY · <b>本周自取节奏 · 单 / 小时</b></h4>
+        <div class="bars">
+          <div class="bar"><i style="height:18%;"></i><small>06</small></div>
+          <div class="bar"><i style="height:22%;"></i><small>07</small></div>
+          <div class="bar"><i class="peak" style="height:80%;"></i><small>08</small></div>
+          <div class="bar"><i class="peak" style="height:95%;"></i><small>09</small></div>
+          <div class="bar"><i style="height:35%;"></i><small>10</small></div>
+          <div class="bar"><i style="height:18%;"></i><small>11</small></div>
+          <div class="bar"><i class="peak" style="height:60%;"></i><small>12</small></div>
+          <div class="bar"><i class="peak" style="height:72%;"></i><small>13</small></div>
+          <div class="bar"><i style="height:24%;"></i><small>14</small></div>
+          <div class="bar"><i style="height:20%;"></i><small>15</small></div>
+          <div class="bar"><i style="height:28%;"></i><small>16</small></div>
+          <div class="bar"><i style="height:42%;"></i><small>17</small></div>
+          <div class="bar"><i class="peak" style="height:88%;"></i><small>18</small></div>
+          <div class="bar"><i class="peak" style="height:92%;"></i><small>19</small></div>
+          <div class="bar"><i style="height:38%;"></i><small>20</small></div>
+          <div class="bar"><i style="height:14%;"></i><small>21</small></div>
+        </div>
+        <div class="legend">
+          <span><i style="background:linear-gradient(180deg,#6b8e5a,#88b076);"></i>三波高峰 · 7-9 / 12-13 / 18-19</span>
+          <span><i style="background:linear-gradient(180deg,var(--accent),#d96e3f);"></i>常规时段</span>
+        </div>
+      </div>
+
+      <div class="alerts">
+        <h4>ALERTS · <b>提醒</b></h4>
+        <div class="alert-row"><span class="dot r"></span><span><b>A029 缺件提醒</b><br/>有机鸡蛋 1 盒未到货</span><span class="time">09:42</span></div>
+        <div class="alert-row"><span class="dot y"></span><span><b>有机鸡蛋差 9</b><br/>请联系上游或调整</span><span class="time">09:30</span></div>
+        <div class="alert-row"><span class="dot y"></span><span><b>河蟹差 3</b><br/>缺货明日补</span><span class="time">09:28</span></div>
+        <div class="alert-row"><span class="dot g"></span><span><b>本周续单率 +6%</b><br/>用户回购在涨</span><span class="time">08:00</span></div>
+        <div class="alert-row"><span class="dot g"></span><span><b>明日预排 38 单</b><br/>新增 3 个团员</span><span class="time">07:00</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="bottom-bar">
+    <span>17 / 22 · LEADER DASHBOARD</span>
+    <div class="dots"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i></div>
+    <span>WANG ZETIAN · 2026</span>
+  </div>
+</div>
+</body></html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><title>07 · M-Mall Competitive</title>
+<link rel="stylesheet" href="_deck.css">
+<style>
+  .header{ display:flex; justify-content:space-between; align-items:flex-end; margin-top:32px; gap:48px;}
+  .header .h{ font-family:var(--font-zh-display); font-weight:900; font-size:54px; line-height:1.1; max-width:1100px;}
+  .header .h em{ color:var(--accent); font-style:normal;}
+  .header .meta{ font-family:var(--font-mono); font-size:12px; color:var(--text-faint); letter-spacing:0.1em; text-align:right; line-height:1.7; min-width:300px;}
+  .matrix{
+    margin-top:50px; background:var(--surface); border:1px solid var(--hair); border-radius:14px;
+    padding:32px 36px;
+  }
+  .matrix table{ width:100%; border-collapse:collapse; }
+  .matrix th, .matrix td{
+    text-align:left; padding:14px 12px; border-bottom:1px solid var(--hair); vertical-align:top;
+    font-size:13px; color:var(--text-dim); line-height:1.55;
+  }
+  .matrix th{
+    font-family:var(--font-mono); font-size:10px; color:var(--text-faint); letter-spacing:0.1em;
+    text-transform:uppercase; padding-bottom:18px;
+  }
+  .matrix td.brand{ font-family:var(--font-zh-display); font-size:18px; color:var(--text); font-weight:700; padding-right:0;}
+  .matrix td.brand small{ display:block; font-family:var(--font-mono); font-size:10px; color:var(--text-faint); font-weight:400; letter-spacing:0.05em; margin-top:3px;}
+  .matrix td b{ color:var(--text); font-weight:500;}
+  .score{ display:inline-flex; gap:2px; }
+  .score i{ width:10px; height:10px; background:var(--surface-2); border-radius:2px;}
+  .score i.on{ background:var(--accent);}
+  .matrix tr.us td{ background:rgba(255,106,0,0.04); border-bottom-color:var(--accent);}
+  .matrix tr.us td.brand{ color:var(--accent);}
+  .insight{
+    margin-top:36px; display:grid; grid-template-columns: repeat(3, 1fr); gap:20px;
+  }
+  .ins{ background:var(--surface); border:1px solid var(--hair); border-radius:12px; padding:20px 22px;}
+  .ins .num{ font-family:var(--font-mono); font-size:11px; color:var(--accent); letter-spacing:0.1em;}
+  .ins h4{ font-size:16px; font-weight:700; margin:8px 0 8px; color:var(--text);}
+  .ins p{ font-size:13px; color:var(--text-dim); line-height:1.6;}
+</style></head>
+<body class="padb-mmall">
+<div class="page haze-warm">
+  <div class="concept-badge">[ 概念研究 / CONCEPT RESEARCH ]</div>
+  <div class="top-meta"><span>07 / 22 · M-MALL · COMPETITIVE</span><span class="right">汪泽田 · 2026 PORTFOLIO</span></div>
+
+  <div class="header">
+    <div class="h">同样是首页 + 详情 + 结算，<em>4 个对手把"信息密度"压到了不同极端</em></div>
+    <div class="meta">
+      4 BRANDS × 5 DIMENSIONS<br/>
+      OBSERVED 2025-10-12 ~ 10-19<br/>
+      iOS · 同一台 iPhone 14
+    </div>
+  </div>
+
+  <div class="matrix">
+    <table>
+      <thead>
+        <tr>
+          <th style="width:18%;">竞品 / 调研对象</th>
+          <th style="width:14%;">首页一级入口数</th>
+          <th style="width:18%;">详情页核心信息位</th>
+          <th style="width:16%;">优惠券呈现方式</th>
+          <th style="width:14%;">支付完成页主轴</th>
+          <th style="width:12%;">综合密度</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="brand">竞品 A · 大型综合<small>10 亿级 DAU</small></td>
+          <td>第 1 屏 8 个 + 第 2 屏 8 个，共 <b>16 个</b></td>
+          <td>下滑 3.8 屏到完整规格</td>
+          <td>结算页弹窗推荐券</td>
+          <td>订单确认 + 推荐</td>
+          <td><div class="score"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div></td>
+        </tr>
+        <tr>
+          <td class="brand">竞品 B · 直播带货向<small>下沉市场</small></td>
+          <td>金刚位 6 个 + 直播位 3 个，共 <b>9 个</b></td>
+          <td>视频铺满，规格折叠</td>
+          <td>悬浮券气泡</td>
+          <td>满屏推荐 + 红包雨</td>
+          <td><div class="score"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div></td>
+        </tr>
+        <tr>
+          <td class="brand">竞品 C · 精选品类向<small>客单 200+</small></td>
+          <td>金刚位 <b>4 个</b> + 大图区</td>
+          <td>规格 + 图文交替，2 屏可见</td>
+          <td>结算页折叠抽屉</td>
+          <td>仅订单确认 + 物流提示</td>
+          <td><div class="score"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></div></td>
+        </tr>
+        <tr>
+          <td class="brand">竞品 D · 跨境向<small>国际品牌为主</small></td>
+          <td>金刚位 <b>5 个</b></td>
+          <td>规格 + 海关 + 物流，3 屏</td>
+          <td>结算页明示可用券列表</td>
+          <td>订单确认 + 物流时间线</td>
+          <td><div class="score"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></div></td>
+        </tr>
+        <tr class="us">
+          <td class="brand">M-Mall · 当前<small>本项目主体</small></td>
+          <td>金刚位 8 个，<b>3 个 CTR &lt; 2%</b></td>
+          <td>3 个 banner 挤占，<b>4.2 屏</b>到规格</td>
+          <td>抽屉 7 张并存，无标识</td>
+          <td><b>3 个营销弹窗</b>，确认信息 14%</td>
+          <td><div class="score"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="insight">
+    <div class="ins"><div class="num">INSIGHT 01</div><h4>密度 ≠ 转化</h4><p>竞品 C 用最少入口做到了高客单。"塞满"不是答案，"想清楚"是。</p></div>
+    <div class="ins"><div class="num">INSIGHT 02</div><h4>详情页是决策页，不是导流页</h4><p>4.2 屏才看到规格 = 把决策需要的信息埋了。竞品 D 在 3 屏内给完所有决策信息。</p></div>
+    <div class="ins"><div class="num">INSIGHT 03</div><h4>支付完成页要做"确认"</h4><p>4 个竞品里 3 个把这页交还给"订单+物流"，只有 M-Mall 还把它当广告位。</p></div>
+  </div>
+
+  <div class="bottom-bar">
+    <span>07 / 22 · COMPETITIVE</span>
+    <div class="dots"><i></i><i></i><i></i><i></i><i></i><i></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    <span>WANG ZETIAN · 2026</span>
+  </div>
+</div>
+</body></html>

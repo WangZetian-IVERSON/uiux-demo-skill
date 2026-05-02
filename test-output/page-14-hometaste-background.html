@@ -1,0 +1,77 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><title>14 · Hometaste Background</title>
+<link rel="stylesheet" href="_deck.css">
+<style>
+  .grid{ display:grid; grid-template-columns: 1.2fr 1fr; height:100%; gap:64px; padding-top:32px;}
+  .left{ display:flex; flex-direction:column; gap:22px;}
+  .left .image-slot{ width:100%; height:600px;}
+  .left .caption{ font-size:13px; color:#9a8c7d; line-height:1.55; padding-top:12px; border-top:1px solid var(--hair); font-family:var(--font-mono); letter-spacing:0.04em;}
+  .right{ display:flex; flex-direction:column; gap:24px;}
+  .eyebrow{ font-family:var(--font-mono); font-size:13px; color:var(--accent); letter-spacing:0.1em;}
+  .h{ font-family:var(--font-zh-display); font-weight:900; font-size:52px; line-height:1.15; color:var(--text);}
+  .h em{ color:var(--accent); font-style:normal;}
+  .lead{ font-size:16px; color:#5a4d40; line-height:1.75;}
+  .scenes{ display:grid; grid-template-columns: repeat(2, 1fr); gap:18px; margin-top:8px;}
+  .sc{ background:var(--surface); border:1px solid var(--hair); border-radius:12px; padding:20px 22px;}
+  .sc .lab{ font-family:var(--font-mono); font-size:10px; color:var(--accent); letter-spacing:0.1em; margin-bottom:8px;}
+  .sc h4{ font-size:18px; font-weight:700; color:var(--text); margin-bottom:6px; line-height:1.3;}
+  .sc p{ font-size:13px; color:#5a4d40; line-height:1.6;}
+  .sc p b{ color:var(--accent); font-weight:600;}
+  .top-meta{ color:#9a8c7d;} .top-meta .right{ color:#7a6d60;}
+  .bottom-bar{ color:#9a8c7d;}
+  .concept-badge{ background:rgba(193,75,42,0.06);}
+</style></head>
+<body class="padb-hometaste">
+<div class="page haze-paper">
+  <div class="concept-badge">[ 概念研究 / CONCEPT RESEARCH ]</div>
+  <div class="top-meta"><span>14 / 22 · HOMETASTE · BACKGROUND</span><span class="right">汪泽田 · 2026 PORTFOLIO</span></div>
+
+  <div class="grid">
+    <div class="left">
+      <div class="image-slot" style="border:none;padding:0;overflow:hidden;">
+        <img src="assets/PROMPT-14-hometaste-scene.png" alt="Hometaste Scene" style="width:100%;height:100%;object-fit:cover;display:block;" />
+      </div>
+      <div class="caption">FIG.14 · 项目场景 · 团长清晨在自取点收货 · 概念静物</div>
+    </div>
+
+    <div class="right">
+      <div class="eyebrow">PROJECT 02 · BUSINESS BACKGROUND</div>
+      <div class="h">同一个产品，<em>两类极不一样的用户</em></div>
+      <div class="lead">
+        家味是覆盖长三角 2 个城市、380 个自取点的生鲜社区团购小程序。
+        一个产品里同时有<b style="color:var(--accent);">买菜的妈妈</b>和<b style="color:var(--accent);">兼职团长</b>，
+        前者一周用 3 次、每次 4 分钟；后者每天用 12 次、每次 30 秒。
+        团长后台用同一套组件库做不出"快"的感觉，是这次重做的起点。
+      </div>
+
+      <div class="scenes">
+        <div class="sc">
+          <div class="lab">USER A · BUYER</div>
+          <h4>李姐 · 32 岁 · 二孩妈妈</h4>
+          <p>下班路上滑着选明早的菜，3-5 个 SKU，决策门槛<b>不在功能而在新鲜度</b>。一周打开 3 次。</p>
+        </div>
+        <div class="sc">
+          <div class="lab">USER B · LEADER</div>
+          <h4>张哥 · 41 岁 · 便利店店长</h4>
+          <p>每天 7:00 到货后开干。日清 35 单，<b>容错率 0</b>。一天打开 12 次，单次 ≤ 30 秒。</p>
+        </div>
+        <div class="sc">
+          <div class="lab">SCALE</div>
+          <h4>城市 · 站点 · 团长</h4>
+          <p>2 城 · <b>380 个自取点</b> · 380 名团长 · 8 万周活用户 · 日均 5400 单</p>
+        </div>
+        <div class="sc">
+          <div class="lab">PROBLEM</div>
+          <h4>团长 NPS 跌到 -12</h4>
+          <p>团长流失率从 4%/月升到 11%/月，主要原因：<b>"后台太慢、错单回退路径长"</b></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom-bar">
+    <span>14 / 22 · BACKGROUND</span>
+    <div class="dots"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    <span>WANG ZETIAN · 2026</span>
+  </div>
+</div>
+</body></html>

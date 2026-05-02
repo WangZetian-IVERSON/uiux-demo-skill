@@ -1,0 +1,98 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><title>12 · M-Mall Reflection</title>
+<link rel="stylesheet" href="_deck.css">
+<style>
+  .header{ display:flex; justify-content:space-between; align-items:flex-end; margin-top:32px; gap:48px;}
+  .header .h{ font-family:var(--font-zh-display); font-weight:900; font-size:54px; line-height:1.1; max-width:1100px;}
+  .header .h em{ color:var(--accent); font-style:normal;}
+  .header .meta{ font-family:var(--font-mono); font-size:12px; color:var(--text-faint); letter-spacing:0.1em; text-align:right; line-height:1.7; min-width:280px;}
+  .three-col{ display:grid; grid-template-columns: repeat(3, 1fr); gap:24px; margin-top:50px; height:760px;}
+  .col{ background:var(--surface); border:1px solid var(--hair); border-radius:18px; padding:32px 32px; display:flex; flex-direction:column; gap:18px;}
+  .col .lab{ font-family:var(--font-mono); font-size:11px; letter-spacing:0.12em; padding:4px 10px; border-radius:3px; align-self:flex-start;}
+  .col h3{ font-family:var(--font-zh-display); font-size:32px; font-weight:800; line-height:1.2; color:var(--text);}
+  .col .lead{ font-size:14px; color:var(--text-dim); line-height:1.65;}
+  .col ul{ list-style:none; display:flex; flex-direction:column; gap:14px; margin-top:8px;}
+  .col li{ display:grid; grid-template-columns: 24px 1fr; gap:10px; font-size:13px; color:var(--text-dim); line-height:1.6; padding:12px 0; border-bottom:1px solid var(--hair);}
+  .col li:last-child{ border-bottom:none;}
+  .col li::before{ font-family:var(--font-mono); color:var(--accent); font-size:11px; padding-top:3px;}
+  .col li b{ color:var(--text); font-weight:500;}
+  .col.shipped .lab{ background: rgba(107,142,90,0.18); color:#88b076;}
+  .col.shipped li::before{ content:'✓'; color:#88b076;}
+  .col.shipped { border-color:rgba(107,142,90,0.25);}
+  .col.improved .lab{ background: rgba(255,180,84,0.15); color:var(--accent-2);}
+  .col.improved li::before{ content:'△'; color:var(--accent-2);}
+  .col.remains .lab{ background: rgba(255,106,0,0.12); color:var(--accent);}
+  .col.remains li::before{ content:'?'; color:var(--accent);}
+
+  .footer-note{
+    margin-top:24px; padding:18px 24px; background:var(--surface); border:1px solid var(--hair); border-radius:10px;
+    font-size:13px; color:var(--text-dim); line-height:1.7;
+  }
+  .footer-note b{ color:var(--text);}
+  .footer-note .chip{ margin-right:8px;}
+</style></head>
+<body class="padb-mmall">
+<div class="page haze-warm">
+  <div class="concept-badge">[ 概念复盘 / CONCEPT REVIEW ]</div>
+  <div class="top-meta"><span>12 / 22 · M-MALL · REFLECTION</span><span class="right">汪泽田 · 2026 PORTFOLIO</span></div>
+
+  <div class="header">
+    <div class="h">5 个月里<em>哪些落了 / 哪些妥协 / 哪些没解</em></div>
+    <div class="meta">
+      PROJECT REVIEW<br/>
+      诚实优于漂亮<br/>
+      所有数字标 [估算] 的为内部预估
+    </div>
+  </div>
+
+  <div class="three-col">
+
+    <div class="col shipped">
+      <span class="lab">SHIPPED · 已落地</span>
+      <h3>这些动作真的<br/>做进去了</h3>
+      <div class="lead">从立项到 2 月春节前上线，覆盖 4 个核心节点。</div>
+      <ul>
+        <li><span><b>金刚位 8 → 5。</b>下沉 3 个低效入口到二级页，首屏入口数减少 37%。</span></li>
+        <li><span><b>详情页规格上提。</b>从 4.2 屏 → 1 屏内可见，3 个推荐 banner 合并为底部抽屉。</span></li>
+        <li><span><b>结算页券分组。</b>可用 / 不可用 / 最优勾选三态，灰度上线一周回收。</span></li>
+        <li><span><b>完成页主轴重构。</b>订单确认 + 物流 ETA 置顶，营销 banner 限 1 个且可关。</span></li>
+        <li><span><b>9 个订单状态合并为 5 个。</b>同步给客服 + 数据团队的口径文档。</span></li>
+      </ul>
+    </div>
+
+    <div class="col improved">
+      <span class="lab">IMPROVED · 妥协后的方案</span>
+      <h3>没拿到 100 分，<br/>但拿到了能上线的版本</h3>
+      <div class="lead">以下是设计提案与最终上线版本之间的妥协，原因主要是接口 / 业务方约束。</div>
+      <ul>
+        <li><span><b>金刚位本来想做到 4 个。</b>运营方坚持 5 个保留一个大促入口，妥协方案：第 5 位做<b>动态位</b>，非大促期间隐藏。</span></li>
+        <li><span><b>详情页推荐抽屉本来想完全可关。</b>因 GMV 考核，最终保留"展开默认收起"，但用户可永久折叠。</span></li>
+        <li><span><b>完成页 1 个 banner</b>的"1 个"是季度均值，大促期间允许 2 个。这是一个仍在协商的边界。</span></li>
+      </ul>
+    </div>
+
+    <div class="col remains">
+      <span class="lab">REMAINS · 未解 / 下一步</span>
+      <h3>这些问题<br/>留给了下一个版本</h3>
+      <div class="lead">复盘时和 PM 一起列的"已知未解"。下一阶段会先看 1-2 项。</div>
+      <ul>
+        <li><span><b>大促期间金刚位重新爆掉。</b>动态位 + 临时入口的边界仍模糊，节奏一密集就回到塞满。</span></li>
+        <li><span><b>"最优券"的算法不可解释。</b>用户不知道为什么是这一组。计划在下版加一行<b>「为什么省了 ¥ 65」</b>说明。</span></li>
+        <li><span><b>支付失败 30 分钟挂起 vs 库存。</b>遇到爆品时挂起的库存会影响其他用户购买，规则待协商。</span></li>
+        <li><span><b>跨端一致性。</b>iOS 先行，Android 落后 1 个版本，期间双端体验有差异。</span></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="footer-note">
+    <span class="chip chip-est">[估算]</span>
+    <b>关于上线效果：</b>本作品集投递时项目刚灰度 30%，没有完整的回收数据。文中所有效率/转化数字均为<b>项目内部预估或灰度阶段方向性观测</b>，不作为已上线 KPI 主张。具体回收等下个季度的复盘文档。
+  </div>
+
+  <div class="bottom-bar">
+    <span>12 / 22 · REFLECTION</span>
+    <div class="dots"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    <span>WANG ZETIAN · 2026</span>
+  </div>
+</div>
+</body></html>

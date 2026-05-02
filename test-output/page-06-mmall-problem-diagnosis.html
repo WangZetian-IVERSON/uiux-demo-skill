@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>M-Mall · 问题诊断 · Test Showcase</title>
+<style>
+  :root{
+    --base:#0d0d10; --surface:#1a1a1f; --surface-2:#23232b;
+    --accent:#ff6a00; --secondary:#ffb454; --rim:#ffd9a8;
+    --text:#f5f1ea; --text-dim:#8a8a92; --text-faint:#5a5a62;
+    --hairline: rgba(245,241,234,0.08);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    background: var(--base);
+    color: var(--text);
+    font-family:'HarmonyOS Sans SC','PingFang SC',sans-serif;
+    width:1920px; height:1080px;
+    padding:64px 96px 56px;
+    position:relative;
+    overflow:hidden;
+  }
+  /* atmospheric haze */
+  body::before{
+    content:''; position:absolute; top:-200px; left:-200px; width:900px; height:900px;
+    background: radial-gradient(circle, rgba(255,106,0,0.10) 0%, transparent 70%);
+    pointer-events:none;
+  }
+  body > *{ position:relative; z-index:1; }
+
+  .concept-badge{
+    position:absolute; top:32px; right:96px;
+    border:1px solid var(--accent); color:var(--accent);
+    font-family:'JetBrains Mono', monospace; font-size:11px; letter-spacing:0.08em;
+    padding:5px 10px; border-radius:3px;
+    background: rgba(255,106,0,0.04);
+  }
+
+  .top-meta{
+    display:flex; justify-content:space-between; align-items:center;
+    font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--text-faint);
+    letter-spacing:0.08em;
+  }
+  .top-meta .right{ color:var(--text-dim); }
+
+  .header{ margin-top:32px; display:grid; grid-template-columns: 1fr 480px; gap:48px; align-items:end; }
+  .h-left .eyebrow{
+    font-family:'JetBrains Mono',monospace; font-size:13px; color:var(--accent);
+    letter-spacing:0.1em; margin-bottom:18px;
+  }
+  .h-left .title{
+    font-size:60px; font-weight:900; line-height:1.05; letter-spacing:-0.01em;
+    font-family:'Source Han Sans', 'PingFang SC',sans-serif;
+  }
+  .h-left .title em{ color:var(--accent); font-style:normal; }
+  .h-left .sub{
+    margin-top:18px; font-size:16px; color:var(--text-dim); line-height:1.6; max-width:720px;
+  }
+  .h-right{
+    background: var(--surface);
+    border:1px solid var(--hairline);
+    border-radius:14px;
+    padding:22px 26px;
+  }
+  .h-right .label{ font-size:11px; color:var(--text-faint); font-family:'JetBrains Mono',monospace; letter-spacing:0.08em; margin-bottom:8px; }
+  .h-right .meta-row{ display:grid; grid-template-columns: 70px 1fr; gap:8px; padding:8px 0; border-bottom:1px solid var(--hairline); font-size:13px; }
+  .h-right .meta-row:last-child{ border-bottom:none; }
+  .h-right .meta-row .k{ color:var(--text-faint); }
+  .h-right .meta-row .v{ color:var(--text); }
+
+  .grid{
+    margin-top:48px;
+    display:grid; grid-template-columns: repeat(2, 1fr); grid-auto-rows: 1fr;
+    gap:24px;
+    height: 600px;
+  }
+  .card{
+    background: var(--surface);
+    border:1px solid var(--hairline);
+    border-radius:14px;
+    padding:28px 30px;
+    display:grid;
+    grid-template-columns: 60px 1fr;
+    gap:20px;
+    position:relative;
+  }
+  .card .num{
+    font-family:'JetBrains Mono',monospace; font-weight:700; font-size:42px;
+    color:var(--accent); line-height:1;
+  }
+  .card .body{ display:flex; flex-direction:column; gap:14px; }
+  .card .problem{ font-size:20px; font-weight:700; color:var(--text); line-height:1.35; }
+  .card .meta{ display:grid; grid-template-columns: 80px 1fr; gap:6px 12px; font-size:13px; }
+  .card .meta .k{ color:var(--text-faint); font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.05em; padding-top:2px; }
+  .card .meta .v{ color:var(--text-dim); line-height:1.5; }
+  .card .meta .v b{ color:var(--text); font-weight:500; }
+  .card .meta .v .est{
+    display:inline-block; font-family:'JetBrains Mono',monospace; font-size:10px;
+    background:rgba(255,180,84,0.12); color:var(--secondary);
+    padding:1px 6px; border-radius:2px; margin-left:6px;
+  }
+  .card .impact{
+    margin-top:auto; padding-top:14px; border-top:1px solid var(--hairline);
+    font-size:13px; color:var(--rim); line-height:1.5;
+  }
+  .card .impact::before{ content:'→ '; color:var(--accent); font-weight:700; }
+  .card.span2 { grid-column: span 2; grid-template-columns: 60px 1fr 1fr; gap:30px; }
+  .card.span2 .body{ grid-column: 2; }
+  .card.span2 .visual{
+    grid-column: 3;
+    border-left:1px solid var(--hairline);
+    padding-left:30px;
+    display:flex; flex-direction:column; gap:10px; justify-content:center;
+  }
+  .card.span2 .visual .v-label{ font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--text-faint); letter-spacing:0.08em; }
+  .card.span2 .visual .v-row{
+    display:grid; grid-template-columns: 1fr 32px; align-items:center; gap:10px;
+    font-size:12px; color:var(--text-dim);
+  }
+  .card.span2 .visual .v-bar{ height:6px; background: var(--surface-2); border-radius:3px; overflow:hidden; }
+  .card.span2 .visual .v-bar i{ display:block; height:100%; background: linear-gradient(90deg, var(--accent), var(--secondary)); }
+  .card.span2 .visual .v-pct{ font-family:'JetBrains Mono',monospace; color:var(--text); font-size:12px; text-align:right; }
+</style>
+</head>
+<body>
+
+<div class="concept-badge">[ 概念 / CONCEPT ]</div>
+
+<div class="top-meta">
+  <span>06 / 22 · M-MALL · PROBLEM SPACE</span>
+  <span class="right">汪泽田 · 2026 PORTFOLIO</span>
+</div>
+
+<div class="header">
+  <div class="h-left">
+    <div class="eyebrow">PROJECT 01 · M-MALL · PROBLEM DIAGNOSIS</div>
+    <div class="title">5 个让用户<em>放弃下单</em>的<br/>具体摩擦点</div>
+    <div class="sub">
+      基于 2025 Q4 对 12 位 25-40 岁城市女性用户的可用性观察 <span style="color:var(--secondary);font-family:'JetBrains Mono',monospace;font-size:11px;background:rgba(255,180,84,0.12);padding:1px 6px;border-radius:2px;margin-left:4px;">概念研究 · 用于设计提案</span>，
+      把"体验不好"翻译为可改的具体动作。每条问题都标明：在哪一步发生 / 哪类用户最痛 / 频次估算。
+    </div>
+  </div>
+  <div class="h-right">
+    <div class="label">CASE META</div>
+    <div class="meta-row"><span class="k">产品</span><span class="v">M-Mall · 综合电商 App</span></div>
+    <div class="meta-row"><span class="k">平台</span><span class="v">iOS / Android · 5.2.0</span></div>
+    <div class="meta-row"><span class="k">角色</span><span class="v">主设计师 · 信息架构 + 视觉</span></div>
+    <div class="meta-row"><span class="k">周期</span><span class="v">2025-09 → 2026-02</span></div>
+    <div class="meta-row"><span class="k">合作</span><span class="v">PM ×1 · iOS ×2 · Android ×2</span></div>
+  </div>
+</div>
+
+<div class="grid">
+
+  <div class="card">
+    <div class="num">01</div>
+    <div class="body">
+      <div class="problem">首页 8 个金刚位中，3 个月点击率 &lt; 2%</div>
+      <div class="meta">
+        <span class="k">SHOWS UP</span><span class="v">首屏第二屏「金刚位」<b>一级入口</b>区域</span>
+        <span class="k">WHO</span><span class="v">所有新用户首次冷启动场景</span>
+        <span class="k">HOW OFTEN</span><span class="v">每次启动 App 必经过<span class="est">[估算] 38% 启动量浪费</span></span>
+      </div>
+      <div class="impact">优质流量被低效入口稀释，新用户首屏即流失到搜索框，金刚位形同装饰</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="num">02</div>
+    <div class="body">
+      <div class="problem">商品详情页要滑动 4.2 屏才能看到完整规格表</div>
+      <div class="meta">
+        <span class="k">SHOWS UP</span><span class="v">商品详情页<b>核心决策信息</b>被 3 个推荐 banner 挤到下方</span>
+        <span class="k">WHO</span><span class="v">服装 / 数码品类的<b>对比型购买用户</b></span>
+        <span class="k">HOW OFTEN</span><span class="v">详情页停留 &gt; 30s 的用户中<span class="est">[估算] 占 64%</span></span>
+      </div>
+      <div class="impact">核心决策信息（尺寸 / 材质 / 兼容性）被运营内容挡住，导致咨询客服或直接退出</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="num">03</div>
+    <div class="body">
+      <div class="problem">优惠券页面 7 张共存时无法看出哪张能用于当前订单</div>
+      <div class="meta">
+        <span class="k">SHOWS UP</span><span class="v">结算页打开「优惠券」<b>抽屉</b>时</span>
+        <span class="k">WHO</span><span class="v">大促期间<b>多券叠加</b>用户（25-35 岁价格敏感型）</span>
+        <span class="k">HOW OFTEN</span><span class="v">大促期间订单中<span class="est">[估算] 41% 触发该场景</span></span>
+      </div>
+      <div class="impact">用户回退到购物车反复试券，最终选择最低门槛券而非最优券，体验+客单同时受损</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="num">04</div>
+    <div class="body">
+      <div class="problem">订单状态有 9 种文案表述，3 种含义重叠</div>
+      <div class="meta">
+        <span class="k">SHOWS UP</span><span class="v">「我的订单」列表<b>状态标签</b></span>
+        <span class="k">WHO</span><span class="v"><b>退换货 / 售后</b>场景的所有用户</span>
+        <span class="k">HOW OFTEN</span><span class="v">售后入口客诉中<span class="est">[估算] 27%</span> 与状态歧义有关</span>
+      </div>
+      <div class="impact">「待发货」「已揽收」「运输中」边界模糊，用户反复刷新或主动联系客服</div>
+    </div>
+  </div>
+
+  <div class="card span2">
+    <div class="num">05</div>
+    <div class="body">
+      <div class="problem">支付完成页是个广告位，不是个确认页</div>
+      <div class="meta">
+        <span class="k">SHOWS UP</span><span class="v">支付完成跳转后<b>停留 3 秒</b>的关键时刻</span>
+        <span class="k">WHO</span><span class="v">所有完成支付用户，尤其<b>首单 / 大额订单</b>用户</span>
+        <span class="k">HOW OFTEN</span><span class="v">100% 订单必经，无法绕过</span>
+      </div>
+      <div class="impact">首单用户最需要的"我刚刚买了什么 / 什么时候到 / 怎么找回订单"被 3 个营销弹窗淹没，信任感未建立</div>
+    </div>
+    <div class="visual">
+      <div class="v-label">支付完成页元素占比 · 当前</div>
+      <div class="v-row"><span>营销弹窗 / banner</span><div class="v-bar"><i style="width:62%"></i></div><span class="v-pct">62%</span></div>
+      <div class="v-row"><span>"继续购物" 推荐</span><div class="v-bar"><i style="width:24%"></i></div><span class="v-pct">24%</span></div>
+      <div class="v-row"><span>订单确认信息</span><div class="v-bar"><i style="width:14%;background:linear-gradient(90deg,#5a5a62,#8a8a92);"></i></div><span class="v-pct">14%</span></div>
+      <div class="v-label" style="margin-top:8px;">→ 改版后目标比例：订单确认 50% · 后续动作 30% · 营销 20%</div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

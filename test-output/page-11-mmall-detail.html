@@ -1,0 +1,140 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><title>11 · M-Mall Detail</title>
+<link rel="stylesheet" href="_deck.css">
+<style>
+  .header{ display:flex; justify-content:space-between; align-items:flex-end; margin-top:24px; gap:48px;}
+  .header .h{ font-family:var(--font-zh-display); font-weight:900; font-size:48px; line-height:1.1;}
+  .header .h em{ color:var(--accent); font-style:normal;}
+  .header .meta{ font-family:var(--font-mono); font-size:11px; color:var(--text-faint); letter-spacing:0.1em; text-align:right; line-height:1.7; min-width:280px;}
+
+  .grid{ margin-top:36px; display:grid; grid-template-columns: 1.4fr 1fr 1fr; gap:24px; height:820px;}
+  .left{ background:var(--surface); border:1px solid var(--hair); border-radius:14px; padding:28px; display:flex; flex-direction:column; gap:16px;}
+  .left .lab{ font-family:var(--font-mono); font-size:10px; color:var(--accent); letter-spacing:0.1em;}
+  .left h3{ font-size:22px; font-weight:700; color:var(--text);}
+  .left .crop{
+    flex:1; border-radius:10px; background: linear-gradient(135deg, var(--surface-2), #2c2c36);
+    border:1px dashed var(--accent); padding:20px; position:relative; overflow:hidden;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .left .crop .crop-tag{ position:absolute; top:14px; left:14px; font-family:var(--font-mono); font-size:10px; color:var(--accent); border:1px solid var(--accent); padding:3px 8px; border-radius:2px;}
+  .left .crop .crop-content{
+    width:280px; padding:18px 14px; background:var(--surface); border-radius:14px; color:var(--text); font-size:12px;
+  }
+  .left .crop .crop-content .ui-title{ font-size:14px; font-weight:700; margin-bottom:8px;}
+  .left .crop .crop-content .ui-row{ display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid var(--hair); font-size:11px; color:var(--text-dim);}
+  .left .crop .crop-content .ui-row:last-of-type{ border-bottom:none;}
+  .left .crop .crop-content .ui-row b{ color:var(--text); font-weight:500;}
+  .left .crop .crop-content .ui-row .ok{ color:var(--accent);}
+  .left .crop .crop-content .cta{ margin-top:12px; padding:11px; text-align:center; background:var(--accent); color:#000; border-radius:8px; font-weight:700; font-size:13px;}
+  .left .annotations{ display:grid; grid-template-columns: 28px 1fr; gap:8px 12px; margin-top:8px;}
+  .left .annotations .n{ font-family:var(--font-mono); font-size:10px; color:var(--accent); letter-spacing:0.05em; padding-top:2px;}
+  .left .annotations .t{ font-size:13px; color:var(--text-dim); line-height:1.55;}
+  .left .annotations .t b{ color:var(--text); font-weight:500;}
+
+  .col{ display:flex; flex-direction:column; gap:20px;}
+  .micro{ background:var(--surface); border:1px solid var(--hair); border-radius:14px; padding:22px 24px; display:flex; flex-direction:column; gap:12px;}
+  .micro .lab{ font-family:var(--font-mono); font-size:10px; color:var(--accent); letter-spacing:0.1em;}
+  .micro h4{ font-size:18px; font-weight:700; color:var(--text); line-height:1.3;}
+  .micro p{ font-size:13px; color:var(--text-dim); line-height:1.6;}
+  .micro .demo{ background:var(--surface-2); border-radius:8px; padding:14px; font-size:12px; color:var(--text-dim); line-height:1.5;}
+  .micro .demo b{ color:var(--text);}
+  .micro .timeline{ display:flex; align-items:center; gap:8px; font-family:var(--font-mono); font-size:10px; color:var(--text-faint);}
+  .micro .timeline i{ flex:1; height:2px; background:var(--surface-2); position:relative; border-radius:1px;}
+  .micro .timeline i.on{ background:var(--accent);}
+  .micro .timeline i .pip{ position:absolute; right:-3px; top:-2px; width:6px; height:6px; background:var(--accent); border-radius:50%;}
+</style></head>
+<body class="padb-mmall">
+<div class="page haze-warm">
+  <div class="concept-badge">[ 概念 / CONCEPT ]</div>
+  <div class="top-meta"><span>11 / 22 · M-MALL · INTERACTION DETAIL</span><span class="right">汪泽田 · 2026 PORTFOLIO</span></div>
+
+  <div class="header">
+    <div class="h">把 3 个<em>看似无关的细节</em>串成一条信任曲线</div>
+    <div class="meta">
+      INTERACTION DETAIL × 3<br/>
+      ZOOM-IN ON THE 「DECIDE」 MOMENTS
+    </div>
+  </div>
+
+  <div class="grid">
+
+    <div class="left">
+      <div class="lab">DETAIL 01 · 结算页 · 优惠券抽屉</div>
+      <h3>把"7 张券"分成可用 / 不可用两组，并自动勾最优</h3>
+      <div class="crop">
+        <div class="crop-tag">CROP · 结算页中段</div>
+        <div class="crop-content">
+          <div class="ui-title">优惠券 · 共 7 张</div>
+          <div class="ui-row"><span>满 200-30 · 服饰</span><b class="ok">✓ 已选</b></div>
+          <div class="ui-row"><span>满 100-15 · 通用</span><b>可叠加</b></div>
+          <div class="ui-row"><span>新人券 ¥ 20</span><b>可用</b></div>
+          <div class="ui-row" style="opacity:0.4;"><span>满 500-80 · 不满足</span><b>未达额</b></div>
+          <div class="ui-row" style="opacity:0.4;"><span>家居满减 · 品类不符</span><b>不可用</b></div>
+          <div class="cta">最优组合 · 立省 ¥ 65</div>
+        </div>
+      </div>
+      <div class="annotations">
+        <span class="n">a</span><span class="t"><b>分组：可用 / 不可用</b>各占视觉一段，用户不需要逐张读说明</span>
+        <span class="n">b</span><span class="t"><b>"已选"标签</b>和勾选态颜色一致，避免「我刚选的是不是这个」的二次确认</span>
+        <span class="n">c</span><span class="t">底部 CTA 直接<b>显示节省金额</b>，省=动力，节省金额是行动按钮的真正主语</span>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="micro">
+        <div class="lab">DETAIL 02 · 详情页 · 加购按钮</div>
+        <h4>从滚动消失改为<br/>全程吸底</h4>
+        <p>原版：CTA 在第 1 屏，下滑后消失；用户决策好往往要回滚。改版：吸底常驻，并随滚动<b>压缩高度</b>但不消失。</p>
+        <div class="demo">
+          <b>滚动行为：</b><br/>
+          0-200px：完整 CTA · 64px 高<br/>
+          200-1200px：压缩至 48px · 标题省略<br/>
+          回到顶部：恢复完整态
+        </div>
+        <div class="timeline">
+          <span>开始</span><i class="on"><span class="pip"></span></i><i></i><span>滚到价</span>
+        </div>
+      </div>
+
+      <div class="micro">
+        <div class="lab">DETAIL 03 · 完成页 · 物流时间线</div>
+        <h4>把"什么时候到"<br/>放到最前面</h4>
+        <p>用户最焦虑的是 ETA，不是"再看看"。把<b>预计送达</b>用大字呈现，并自动同步运单。</p>
+        <div class="demo">
+          <b>预计送达：</b>明天 18:00 前<br/>
+          配送：京东物流 · 已揽件<br/>
+          运单：JD0024518……█
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="micro">
+        <div class="lab">DETAIL 04 · 状态文案</div>
+        <h4>9 个订单状态<br/>合并为 5 个</h4>
+        <p>原版状态有歧义（待发货 / 已揽收 / 运输中边界模糊），合并成<b>下单 → 备货 → 在途 → 派送 → 完成</b> 5 段，每段配一句解释。</p>
+        <div class="demo">
+          <b>在途</b> · 你的包裹已离开仓库<br/>
+          <span style="color:var(--text-faint);">原版「已揽收 / 运输中」合并</span>
+        </div>
+      </div>
+
+      <div class="micro">
+        <div class="lab">DETAIL 05 · 错误恢复</div>
+        <h4>支付失败 ≠ 重新结算</h4>
+        <p>支付失败后用户最怕「优惠券会不会失效」。改版做了<b>30 分钟订单挂起</b>，券保留，可一键再支付。</p>
+        <div class="demo">
+          <b>支付未完成</b> · 已为你保留 30 分钟<br/>
+          <span style="color:var(--accent);">→ 再次支付（券仍有效）</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="bottom-bar">
+    <span>11 / 22 · DETAIL</span>
+    <div class="dots"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    <span>WANG ZETIAN · 2026</span>
+  </div>
+</div>
+</body></html>

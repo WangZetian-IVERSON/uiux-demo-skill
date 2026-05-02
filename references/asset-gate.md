@@ -62,7 +62,7 @@ Cover, contents, section covers, thanks pages do NOT need the badge. Real screen
 
 The badge is the smallest and most important honesty mark in the deck. Without it, a reviewer flipping through the middle of the deck cannot tell concept work from shipped product. With it, the deck can be visually complete AND fully honest.
 
-A reusable HTML+CSS snippet is provided at `vendor/huashu-design/assets/concept_badge.html` — copy the markup and the required CSS block into every concept page rather than re-authoring it. Variant labels (`[ 概念数据 / CONCEPT DATA ]`, `[ 概念研究 / CONCEPT RESEARCH ]`, `[ 概念 · 设计提案 / DESIGN PROPOSAL ]`) are listed in that file for context-specific use.
+A reusable HTML+CSS snippet is provided at `vendor/design-assets/assets/concept_badge.html` — copy the markup and the required CSS block into every concept page rather than re-authoring it. Variant labels (`[ 概念数据 / CONCEPT DATA ]`, `[ 概念研究 / CONCEPT RESEARCH ]`, `[ 概念 · 设计提案 / DESIGN PROPOSAL ]`) are listed in that file for context-specific use.
 
 ## Placeholder Format (use sparingly)
 
