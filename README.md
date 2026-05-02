@@ -3,6 +3,10 @@
 A portable skill for building UI/UX portfolio decks and product design case-study presentations. One prompt → complete image-rich deck with automated quality review.
 
 Works with **GitHub Copilot**, **Claude Code**, **Codex (OpenAI)**, and any AI coding agent that supports skill files.
+<img width="2260" height="1271" alt="image" src="https://github.com/user-attachments/assets/37b395f1-b339-4a09-955c-e5cf4a200b86" />
+<img width="2280" height="1281" alt="image" src="https://github.com/user-attachments/assets/8625e88f-0239-45ee-9c53-f9711f407ba0" />
+<img width="2266" height="1256" alt="image" src="https://github.com/user-attachments/assets/f7fdc843-37ab-4e49-b170-2fcf787db168" />
+
 
 ## Quick Start
 
