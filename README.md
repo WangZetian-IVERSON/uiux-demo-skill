@@ -1,4 +1,4 @@
-# UI/UX Portfolio Deck · AI Skill
+# uiux demo skill 
 
 <p align="center">
   <b>一句话 → 完整的作品集 deck</b><br>
